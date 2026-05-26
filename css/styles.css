@@ -471,104 +471,26 @@ a {
 .tpl-tech-preview { background-color: #0b131f; }
 .tpl-creative-preview { background-color: #24142b; }
 
-.mock-sheet {
-  width: 150px;
-  height: 200px;
+.mini-resume-wrapper {
+  width: 820px;
+  height: 1100px;
   background-color: #ffffff;
-  border-radius: 4px;
-  box-shadow: var(--shadow-md);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.mock-sheet.mock-split {
-  flex-direction: row;
-  gap: 8px;
-  padding: 0;
+  transform: scale(0.18);
+  transform-origin: center center;
+  pointer-events: none;
+  position: absolute;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
-
-.mock-sidebar {
-  width: 45px;
-  background-color: var(--accent-color);
-  opacity: 0.65;
-  height: 100%;
+.mini-resume-wrapper .resume-paper {
+  width: 100% !important;
+  height: 100% !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  max-width: 100% !important;
+  min-height: 100% !important;
 }
-
-.mock-main {
-  flex: 1;
-  padding: 10px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.mock-sheet.mock-dark {
-  background-color: #0d1117;
-  color: #c9d1d9;
-}
-
-.mock-header-center {
-  height: 12px;
-  background-color: #1a1a2e;
-  border-radius: 2px;
-  width: 60%;
-  align-self: center;
-}
-
-.mock-header-left {
-  height: 10px;
-  background-color: #333333;
-  border-radius: 2px;
-  width: 50%;
-}
-
-.mock-header-bold {
-  height: 22px;
-  background-color: var(--accent-warning);
-  border-radius: 2px;
-  width: 100%;
-}
-
-.mock-header-code {
-  height: 8px;
-  background-color: #58a6ff;
-  border-radius: 1px;
-  width: 45%;
-}
-
-.mock-header-gradient {
-  height: 20px;
-  background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
-  border-radius: 2px;
-  width: 100%;
-}
-
-.mock-summary {
-  height: 20px;
-  background-color: #f0f0f0;
-  border-radius: 2px;
-}
-.mock-sheet.mock-dark .mock-summary { background-color: #21262d; }
-
-.mock-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.mock-row {
-  height: 6px;
-  background-color: #e6e6e6;
-  border-radius: 1px;
-  width: 100%;
-}
-.mock-row:nth-child(2) { width: 85%; }
-.mock-row:nth-child(3) { width: 90%; }
-.mock-sheet.mock-dark .mock-row { background-color: #161b22; }
 
 .tpl-showcase-info {
   padding: 1.5rem;

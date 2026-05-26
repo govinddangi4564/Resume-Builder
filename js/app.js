@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await AIConfig.load();
   loadDataFromLocalStorage();
   setupEventListeners();
+  renderLandingPreviews();
   
   // Set default form values in HTML based on loaded settings
   document.getElementById('style-select-template').value = styleSettings.template;
@@ -1253,4 +1254,21 @@ function clearForm() {
     loadDataFromLocalStorage();
     showToast('Reset Complete', 'Form inputs cleared.', 'info');
   }
+}
+
+function renderLandingPreviews() {
+  const templates = ['classic', 'modern', 'minimal', 'bold', 'tech', 'creative'];
+  
+  templates.forEach(tpl => {
+    const container = document.getElementById(`landing-preview-${tpl}`);
+    if (container) {
+      container.innerHTML = `
+        <div class="mini-resume-wrapper">
+          <div class="resume-paper font-dm-sans margin-compact" style="--accent-theme: ${styleSettings.accentColor || '#6d5dfc'};">
+            ${ResumeTemplates.render(tpl, sampleResumeData, { ...styleSettings, margins: 'compact' })}
+          </div>
+        </div>
+      `;
+    }
+  });
 }
