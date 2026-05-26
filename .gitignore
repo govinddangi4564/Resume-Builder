@@ -1,0 +1,14 @@
+# Local env files
+.env
+.env.local
+.env.*.local
+config.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
