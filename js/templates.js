@@ -344,6 +344,127 @@ const ResumeTemplates = {
     `;
   },
 
+  /* ==========================================
+     7. ACADEMIC BLUE-HEADER TEMPLATE
+     ========================================== */
+  /* ==========================================
+     7. ACADEMIC BLUE-HEADER TEMPLATE
+     ========================================== */
+  academic(d, styles) {
+    const fullName = `${d.fn || ''} ${d.ln || ''}`.trim() || 'Your Name';
+    const accent = styles.accentColor || '#00a2e8';
+
+    const sectionsHTML = this.renderSectionsInOrder(d, styles, 'academic');
+
+    let coCurricularHTML = '';
+    if (d.coCurricular) {
+      const items = d.coCurricular.split('\n').filter(Boolean);
+      coCurricularHTML = `
+        <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+          <div class="ro-section-banner" style="background-color: ${accent}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">CO-CURRICULAR ACTIVITIES</div>
+          <div style="font-size: 0.8rem; line-height: 1.5; color: #333; padding-left: 0.25rem;">
+            ${items.map(item => {
+              const clean = item.replace(/^[•\-*›]\s*/, '').trim();
+              return `<div style="margin-bottom: 0.35rem; text-align: justify;">${clean}</div>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    let extraCurricularHTML = '';
+    if (d.extraCurricular) {
+      const items = d.extraCurricular.split('\n').filter(Boolean);
+      extraCurricularHTML = `
+        <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+          <div class="ro-section-banner" style="background-color: ${accent}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">EXTRA CURRICULAR ACTIVITIES</div>
+          <div style="font-size: 0.8rem; line-height: 1.5; color: #333; padding-left: 0.25rem;">
+            ${items.map(item => {
+              const clean = item.replace(/^[•\-*›]\s*/, '').trim();
+              return `<div style="margin-bottom: 0.35rem; text-align: justify;">${clean}</div>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    let weblinksHTML = '';
+    if (d.weblinks) {
+      const items = d.weblinks.split('\n').filter(Boolean);
+      weblinksHTML = `
+        <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+          <div class="ro-section-banner" style="background-color: ${accent}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">WEBLINKS</div>
+          <div style="font-size: 0.825rem; line-height: 1.5; color: #333; padding-left: 0.25rem;">
+            ${items.map(item => {
+              const clean = item.replace(/^[•\-*›]\s*/, '').trim();
+              if (clean.includes(':')) {
+                const idx = clean.indexOf(':');
+                const label = clean.substring(0, idx).trim();
+                const url = clean.substring(idx + 1).trim();
+                return `<div style="margin-bottom: 0.25rem;"><strong>${label}:</strong> <a href="${url.startsWith('http') ? url : 'https://' + url}" target="_blank" style="color: inherit; text-decoration: none;">${url}</a></div>`;
+              }
+              return `<div style="margin-bottom: 0.25rem;"><a href="${clean.startsWith('http') ? clean : 'https://' + clean}" target="_blank" style="color: inherit; text-decoration: none;">${clean}</a></div>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    let contactDetailsHTML = '';
+    if (d.email || d.phone) {
+      contactDetailsHTML = `
+        <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+          <div class="ro-section-banner" style="background-color: ${accent}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">CONTACT DETAILS</div>
+          <div style="font-size: 0.825rem; color: #333; padding-left: 0.25rem; display: flex; justify-content: space-between; font-weight: 600;">
+            ${d.email ? `<div>Emails: <a href="mailto:${d.email}" style="color: inherit; text-decoration: none; font-weight: normal;">${d.email}</a></div>` : ''}
+            ${d.phone ? `<div style="text-align: right;">Phone Numbers: <span style="font-weight: normal;">${d.phone}</span></div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    let referencesHTML = '';
+    if (d.references) {
+      const refLines = d.references.split('\n').filter(Boolean);
+      referencesHTML = `
+        <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+          <div class="ro-section-banner" style="background-color: ${accent}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">REFERENCES</div>
+          <div style="font-size: 0.825rem; line-height: 1.45; color: #333; padding-left: 0.25rem;">
+            ${refLines.map((line, idx) => {
+              if (idx === 0) {
+                return `<div style="font-weight: 700; color: #111;">${line.trim()}</div>`;
+              }
+              return `<div style="color: #444; margin-top: 0.1rem;">${line.trim()}</div>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="ro-academic" style="color: #111; font-family: var(--font-interface); line-height: 1.5; padding: 0.5rem 0;">
+        <header class="ro-header" style="text-align: right; margin-bottom: 1.5rem; padding-bottom: 0.5rem;">
+          <h1 class="ro-name" style="color: ${accent}; font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.2rem; letter-spacing: -0.5px;">${fullName}</h1>
+          ${d.title ? `<div class="ro-subtitle" style="font-weight: bold; font-size: 1.1rem; color: #111; margin-bottom: 0.35rem;">${d.title}</div>` : ''}
+          <div class="ro-contact" style="font-size: 0.85rem; color: ${accent}; font-weight: 600; display: flex; flex-direction: column; gap: 0.15rem; align-items: flex-end;">
+            ${d.phone ? `<div>Ph: ${d.phone}</div>` : ''}
+            ${d.email ? `<div>Email: <a href="mailto:${d.email}" style="color: inherit; text-decoration: none;">${d.email}</a></div>` : ''}
+            ${d.linkedin ? `<div>LinkedIn: <a href="https://${this.formatLink(d.linkedin)}" target="_blank" style="color: inherit; text-decoration: none;">${this.formatLink(d.linkedin)}</a></div>` : ''}
+            ${d.github ? `<div>GitHub: <a href="https://${this.formatLink(d.github)}" target="_blank" style="color: inherit; text-decoration: none;">${this.formatLink(d.github)}</a></div>` : ''}
+          </div>
+        </header>
+        <main class="ro-body">
+          ${sectionsHTML}
+          ${coCurricularHTML}
+          ${extraCurricularHTML}
+          ${weblinksHTML}
+          ${contactDetailsHTML}
+          ${referencesHTML}
+        </main>
+      </div>
+    `;
+  },
+
   /**
    * Helper function to detect light colors (to swap text black/white)
    */
@@ -848,6 +969,190 @@ const ResumeTemplates = {
         return h + '</div></div>';
       },
       custom: (title, body, acc, bulletFn) => `<div class="ro-section"><h2 class="ro-title" style="color:${acc}">${title}</h2><div class="ro-item-desc" style="background:#fafaff; border-left:3px solid ${acc}; padding:0.75rem 1rem; border-radius: 0 6px 6px 0;">${bulletFn(body)}</div></div>`
+    },
+    academic: {
+      summary: (text, acc) => `
+        <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+          <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">BRIEF OVERVIEW / CAREER OBJECTIVE / SUMMARY</div>
+          <p class="ro-summary" style="font-size: 0.825rem; line-height: 1.5; color: #222; padding-left: 0.25rem; text-align: justify; margin-bottom: 0.75rem;">${text}</p>
+        </div>
+      `,
+      experience: (list, acc, bulletFn) => {
+        let h = `
+          <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+            <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">SEMINARS / TRAININGS / WORKSHOPS</div>
+        `;
+        list.forEach(e => {
+          const descHTML = e.desc ? e.desc.split('\n').filter(Boolean).map(line => {
+            const clean = line.replace(/^[•\-*›]\s*/, '').trim();
+            return `<div style="margin-top: 0.15rem; line-height: 1.45; color: #333; padding-left: 0.25rem; font-size: 0.8rem; text-align: justify;">${clean}</div>`;
+          }).join('') : '';
+
+          h += `
+            <div class="ro-item" style="margin-bottom: 0.75rem; padding-left: 0.25rem;">
+              <div class="ro-item-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; color: #222; margin-bottom: 0.15rem;">
+                <span class="ro-item-title">${e.title}</span>
+                ${(e.start || e.end) ? `<span class="ro-item-date" style="font-weight: normal; color: #555;">${e.start || ''}${e.end ? ' — ' + e.end : ''}</span>` : ''}
+              </div>
+              ${(e.company || e.loc || e.type) ? `<div class="ro-item-sub" style="font-size: 0.78rem; color: #555; font-style: italic; margin-bottom: 0.25rem;">${e.company || ''} ${e.loc ? `• ${e.loc}` : ''} ${e.type ? `• ${e.type}` : ''}</div>` : ''}
+              <div class="ro-item-desc" style="font-size: 0.8rem; line-height: 1.5; color: #333;">${descHTML}</div>
+            </div>
+          `;
+        });
+        return h + '</div>';
+      },
+      education: (list, acc) => {
+        let h = `
+          <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+            <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">EDUCATION</div>
+        `;
+        list.forEach(e => {
+          const isSchool = e.deg.toLowerCase().includes('12th') || e.deg.toLowerCase().includes('10th') || e.deg.toLowerCase().includes('secondary') || e.deg.toLowerCase().includes('matric');
+          if (isSchool) {
+            h += `
+              <div class="ro-item" style="margin-bottom: 0.5rem; padding-left: 0.25rem;">
+                <div class="ro-item-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.825rem; color: #222; margin-bottom: 0.15rem;">
+                  <span class="ro-item-title">${e.deg} ${e.inst ? ' | ' + e.inst : ''} ${e.gpa ? ' | Aggregate: ' + e.gpa : ''}</span>
+                  <span class="ro-item-date" style="font-weight: normal; color: #555;">${e.end || e.start || ''}</span>
+                </div>
+              </div>
+            `;
+          } else {
+            h += `
+              <div class="ro-item" style="margin-bottom: 0.65rem; padding-left: 0.25rem;">
+                <div class="ro-item-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; color: #222; margin-bottom: 0.15rem;">
+                  <span class="ro-item-title" style="font-weight: 700;">${e.inst}</span>
+                  <span class="ro-item-date" style="font-weight: normal; color: #555;">${e.start || ''}${e.end ? ' - ' + e.end : ''}</span>
+                </div>
+                <div class="ro-item-sub" style="font-size: 0.8rem; color: #333; font-weight: 500; margin-bottom: 0.15rem;">${e.deg} ${e.gpa ? ' | SGPA/CGPA : ' + e.gpa : ''}</div>
+                ${e.course ? `<div class="ro-item-desc" style="font-size: 0.78rem; color: #666; margin-top: 0.1rem; padding-left: 0.25rem;">Coursework: ${e.course}</div>` : ''}
+              </div>
+            `;
+          }
+        });
+        return h + '</div>';
+      },
+      skills: (tech, soft, acc) => {
+        let h = `
+          <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+            <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">KEY EXPERTISE / SKILLS</div>
+            <div style="font-size: 0.825rem; line-height: 1.5; color: #222; padding-left: 0.25rem;">
+        `;
+        if (tech && tech.length > 0) {
+          h += `<div style="margin-bottom: 0.4rem;"><strong style="font-size: 0.825rem; color: #111;">• Technical:</strong><br><span style="padding-left: 0.75rem; display: block; color: #333;">${tech.join(', ')}</span></div>`;
+        }
+        if (soft && soft.length > 0) {
+          h += `<div><strong style="font-size: 0.825rem; color: #111;">• Soft Skills:</strong><br><span style="padding-left: 0.75rem; display: block; color: #333;">${soft.join(', ')}</span></div>`;
+        }
+        return h + '</div></div>';
+      },
+      projects: (list, acc) => {
+        let h = `
+          <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+            <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">PROJECTS</div>
+        `;
+        list.forEach(p => {
+          h += `
+            <div class="ro-item" style="margin-bottom: 0.75rem; padding-left: 0.25rem;">
+              <div class="ro-item-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; color: #222; margin-bottom: 0.15rem;">
+                <div style="display: flex; gap: 0.4rem; align-items: flex-start;">
+                  <span style="color: ${acc};">▫</span>
+                  <span class="ro-item-title" style="font-weight: 700;">${p.name}</span>
+                </div>
+                <span class="ro-item-date" style="font-weight: normal; color: #555;">${p.year || ''}</span>
+              </div>
+              ${p.tech ? `<div style="font-size: 0.8rem; color: #333; padding-left: 0.75rem; margin-top: 0.15rem; margin-bottom: 0.15rem;"><strong>Key Skills:</strong> ${p.tech}</div>` : ''}
+              <div class="ro-item-desc" style="font-size: 0.8rem; line-height: 1.5; color: #333;">
+                ${p.desc ? p.desc.split('\n').map(line => {
+                  const clean = line.replace(/^[•\-*›]\s*/, '').trim();
+                  if (clean.includes('|')) {
+                    return `<div style="font-weight: 600; margin-top: 0.15rem; margin-bottom: 0.15rem; color: #444; font-size: 0.8rem; padding-left: 0.75rem;">${clean}</div>`;
+                  }
+                  return `<div style="padding-left: 0.75rem; text-align: justify; margin-top: 0.2rem; line-height: 1.45;">${clean}</div>`;
+                }).join('') : ''} 
+                ${p.url ? `<div style="padding-left: 0.75rem; margin-top: 0.15rem;"><a href="https://${p.url}" target="_blank" style="color: ${acc}; font-size: 0.78rem; font-weight: 600;">[Link]</a></div>` : ''}
+              </div>
+            </div>
+          `;
+        });
+        return h + '</div>';
+      },
+      certs: (list, acc) => {
+        let h = `
+          <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+            <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">AWARDS</div>
+        `;
+        list.forEach(c => {
+          h += `
+            <div style="margin-bottom: 0.6rem; padding-left: 0.25rem;">
+              <div style="display: flex; gap: 0.4rem; align-items: flex-start; font-size: 0.825rem; line-height: 1.4; color: #111;">
+                <span style="color: ${acc}; flex-shrink: 0; margin-top: 0.1rem;">▫</span>
+                <div>
+                  <strong style="color: #111;">${c.name}</strong>
+                  ${c.issuer ? `<div style="font-size: 0.8rem; color: #333; margin-top: 0.2rem; line-height: 1.45; text-align: justify;">${c.issuer}</div>` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        return h + '</div>';
+      },
+      extras: (langs, hobbies, ach, acc) => {
+        let h = `
+          <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+            <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">ACHIEVEMENTS</div>
+            <div style="font-size: 0.825rem; line-height: 1.5; color: #333; padding-left: 0.25rem;">
+        `;
+        if (ach) {
+          h += `<div style="margin-bottom: 0.4rem;">${ach.split('\n').filter(line => line.trim()).map(line => {
+            const clean = line.replace(/^[•\-*›o▫○]\s*/, '').trim();
+            return `<div style="display:flex; gap:0.4rem; align-items:flex-start; margin-bottom:0.25rem; font-size:0.8rem;">
+              <span style="color: ${acc}; flex-shrink: 0; font-size: 0.75rem; margin-top: 0.1rem;">○</span>
+              <span style="text-align: justify;">${clean}</span>
+            </div>`;
+          }).join('')}</div>`;
+        }
+        if (langs) {
+          h += `<div style="margin-top: 0.4rem; font-size: 0.8rem; padding-left: 0.25rem;"><strong>Languages Known:</strong> ${langs}</div>`;
+        }
+        if (hobbies) {
+          h += `<div style="margin-top: 0.2rem; font-size: 0.8rem; padding-left: 0.25rem;"><strong>Interests / Hobbies:</strong> ${hobbies}</div>`;
+        }
+        return h + '</div></div>';
+      },
+      custom: (title, body, acc, bulletFn) => {
+        let html = `
+          <div class="ro-section" style="margin-bottom: 1rem; page-break-inside: avoid;">
+            <div class="ro-section-banner" style="background-color: ${acc}; color: #ffffff; padding: 0.35rem 0.65rem; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; letter-spacing: 0.5px;">${title}</div>
+            <div class="ro-item-desc" style="font-size: 0.8rem; line-height: 1.5; color: #333; padding-left: 0.25rem;">
+        `;
+        let isNewItem = true;
+        const lines = body.split('\n').filter(line => line.trim());
+        lines.forEach((line, idx) => {
+          const clean = line.replace(/^[•\-*›▫○o]\s*/, '').trim();
+          if (clean.includes('|')) {
+            html += `<div style="font-weight: 600; font-size: 0.8rem; margin-top: 0.15rem; margin-bottom: 0.15rem; color: #444; padding-left: 0.75rem;">${clean}</div>`;
+            isNewItem = false;
+          } else if (clean.startsWith('Key Skills:') || clean.startsWith('Key Skills :')) {
+            const skillsText = clean.substring(clean.indexOf(':') + 1).trim();
+            html += `<div style="font-size: 0.8rem; line-height: 1.5; color: #333; padding-left: 0.75rem; margin-top: 0.15rem; margin-bottom: 0.15rem;"><strong>Key Skills:</strong> ${skillsText}</div>`;
+            isNewItem = true;
+          } else {
+            if (isNewItem || idx === 0) {
+              html += `
+                <div style="display: flex; gap: 0.4rem; align-items: flex-start; font-weight: 700; font-size: 0.85rem; color: #222; margin-top: 0.4rem; margin-bottom: 0.15rem;">
+                  <span style="color: ${acc};">▫</span>
+                  <span>${clean}</span>
+                </div>
+              `;
+              isNewItem = false;
+            } else {
+              html += `<div style="font-size: 0.8rem; line-height: 1.5; color: #333; padding-left: 0.75rem; text-align: justify; margin-top: 0.2rem;">${clean}</div>`;
+            }
+          }
+        });
+        return html + '</div></div>';
+      }
     }
   }
 };

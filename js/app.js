@@ -1,70 +1,98 @@
 const sampleResumeData = {
-  fn: 'Govind',
-  ln: 'Dangi',
-  title: 'Senior Software Engineer',
-  email: 'govinddangi5811@gmail.com',
-  phone: '+91 98765 43210',
-  location: 'Bhopal, India',
-  linkedin: 'linkedin.com/in/govinddangi',
-  github: 'github.com/govinddangi',
-  summary: 'Results-driven Senior Software Engineer with over 5 years of experience in designing and developing scalable web applications. Proven track record of optimizing database queries and spearheading team initiatives to improve application performance by 35%. Dedicated to writing clean, maintainable code and collaborating with cross-functional teams to deliver high-quality software solutions.',
-  techSkills: ['JavaScript', 'TypeScript', 'Node.js', 'React', 'HTML5/CSS3', 'PostgreSQL', 'Docker', 'AWS', 'RESTful APIs', 'Git'],
-  softSkills: ['Team Leadership', 'Project Management', 'Agile Methodology', 'Problem Solving', 'Effective Communication'],
+  fn: 'Dhairya',
+  ln: 'Sen',
+  title: 'B.Tech - CSE',
+  email: '51110105130@piemr.edu.in',
+  phone: '+91-9910471971',
+  location: '',
+  linkedin: 'linkedin.com/in/dhairya-sen-11000021a/',
+  github: '',
+  summary: 'Technically driven engineering student with strong problem-solving skills, hands-on ML/DL experience, and a proven record in innovation and co-curricular achievements.',
+  techSkills: ['Python', 'C', 'C++', 'MATLAB', 'Google Earth Engine', 'Sentinel-2 Satellite Imagery', 'Geospatial Data Processing', 'Remote Sensing'],
+  softSkills: ['Problem-Solving', 'Research', 'Teamwork', 'Time Management', 'Analytical Thinking', 'Adaptability', 'Leadership'],
   exps: [
     {
-      title: 'Senior Full Stack Engineer',
-      company: 'TechSolutions India',
-      start: 'Jun 2022',
-      end: 'Present',
-      loc: 'Bhopal, India',
-      type: 'Full-time',
-      desc: '• Spearheaded the development of a real-time analytics dashboard serving over 50,000 active users, resulting in a 25% increase in user engagement.\n• Optimized database query execution plans in PostgreSQL, reducing average API response latency by 120ms (30% speedup).\n• Led a team of 4 junior developers, implementing code review guidelines and modern CI/CD pipelines to cut release deployment times by half.'
+      title: 'DevOps & Automation Workshop (3 Days)',
+      company: 'PIEMR',
+      start: '',
+      end: '',
+      loc: '',
+      type: '',
+      desc: 'Attended an offline workshop organized by the college; learned the basics of AWS, Linux, and automation tools.'
     },
     {
-      title: 'Software Developer',
-      company: 'Innovate Digital Corp',
-      start: 'Jan 2020',
-      end: 'May 2022',
-      loc: 'Remote',
-      type: 'Full-time',
-      desc: '• Engineered and deployed a responsive microservices-based billing engine using Node.js and AWS Lambda, managing $10k+ in daily transactions.\n• Collaborated with UX designers to refactor frontend web components, increasing PageSpeed scores from 65 to 92.\n• Refined search functionalities, using indexing strategies to improve search performance for over 1M records.'
+      title: 'Metaminds AR/VR/XR Workshop (3 Days)',
+      company: 'PIEMR',
+      start: '',
+      end: '',
+      loc: '',
+      type: '',
+      desc: 'Participated in a hands-on workshop on Augmented Reality, Virtual Reality, and Extended Reality; learned core XR technologies.'
     }
   ],
   edus: [
     {
-      deg: 'B.Tech in Computer Science & Engineering',
-      inst: 'PIEMR Indore',
-      start: '2016',
+      deg: 'B.Tech - CSE',
+      inst: 'Prestige Institute of Engineering Management and Research',
+      start: '2023',
+      end: '2027',
+      gpa: '7.54 / 7.57',
+      course: ''
+    },
+    {
+      deg: '12th',
+      inst: 'CBSE',
+      start: '',
+      end: '2022',
+      gpa: '70.00 / 100.00',
+      course: ''
+    },
+    {
+      deg: '10th',
+      inst: 'CBSE',
+      start: '',
       end: '2020',
-      gpa: '8.4/10',
-      course: 'Data Structures, Database Management Systems, Computer Networks, Software Engineering'
+      gpa: '92.3.00 / 100.00',
+      course: ''
     }
   ],
   certs: [
     {
-      name: 'AWS Certified Solutions Architect – Associate',
-      issuer: 'Amazon Web Services (2024)'
+      name: 'Awarded 1st Place –Model Making Competition (National Science Day)',
+      issuer: 'Developed an innovative Sound Visualizer that demonstrated how changes in sound frequency and pitch affect surfaces, with real-time visual wave projections showcasing strong technical creativity.'
     },
     {
-      name: 'React Advanced Certification',
-      issuer: 'Meta (2022)'
+      name: 'Runner-Up – Kho-Kho Tournament (Urjotsav)',
+      issuer: 'Secured the runner-up position in the intra-college Kho-Kho event held during the annual fest Urjotsav, demonstrating teamwork and athletic performance.'
+    },
+    {
+      name: 'Earned Credly Badge – Machine Learning Learning Path (MATLAB)',
+      issuer: 'Awarded for successfully completing the Machine Learning Learning Path, gaining practical experience in data preprocessing, model building, and understanding core ML algorithms.'
+    },
+    {
+      name: 'Earned Credly Badge – Deep Learning Learning Path (MATLAB)',
+      issuer: 'Recognized for completing the Deep Learning Learning Path, developing skills in neural networks, classification models, and practical deep learning applications.'
     }
   ],
   projs: [
     {
-      name: 'ResumeCraft AI Builder',
-      tech: 'HTML5, CSS3, JavaScript, PDF.js',
-      desc: 'Built a client-side offline-first ATS resume editor featuring live score parsing and custom rendering.',
-      url: 'github.com/govinddangi/resumecraft',
-      year: '2025'
+      name: 'FloodWatch AI: Automated Flood Detection System',
+      tech: 'Python, Google Earth Engine, Sentinel-2 Image Processing, Geospatial Analysis, Threshold-based Classification, Web Development',
+      desc: 'Mentor:Prof. Avijeet Vyas | TeamSize:4\nWeb-based flood detection system processing Sentinel-2 satellite imagery through Google Earth Engine. Implemented NDWI/MNDWI analysis with multi-layer filtering to detect flood patterns across 50+ Indian cities, achieving ~90% accuracy with real-time visualization and statistical analysis.',
+      url: '',
+      year: ''
     }
   ],
-  langs: 'English (Professional), Hindi (Native)',
-  hobbies: 'Competitive Programming, Tech Blogging, Playing Chess',
-  achievements: '• Winner of Bhopal Hackathon 2023 out of 100+ competing teams.\n• Solved 500+ algorithmic challenges on LeetCode.',
+  langs: '',
+  hobbies: '',
+  achievements: 'Developed sound visualizer demonstrating real-time wave projections based on frequency variations.\nSecured runner-up position in intra-college Kho-Kho tournament.\nCompleted Machine Learning path covering preprocessing, modeling, and ML algorithms.\nCompleted Deep Learning path covering neural networks and classification models.\nDeveloped flood detection system using Sentinel-2 imagery with ~90% accuracy across 50+ cities.',
   customEnabled: true,
-  customTitle: 'Volunteering',
-  customBody: '• Technical Mentor at CodeForGood, guiding 15+ underprivileged students in web programming basics.'
+  customTitle: 'PUBLICATIONS / RESEARCH / WHITE PAPERS',
+  customBody: 'Geospatial Intelligence for Disaster Management: ML-Powered Flood Analysis\nMentor: Prof. Avijeet Vyas | No. of Authors: 4\nKey Skills: Satellite Image Analysis, Google Earth Engine, Remote Sensing, Geospatial Intelligence, Water Index Computation (NDWI/MNDWI), Threshold-based Classification, Research Documentation',
+  coCurricular: 'Served as a volunteer in the Engineering Day Hackathon, assisting with event coordination and participant support.\nCompleted a 3-day AR/VR/XR Metaminds workshop and created basic XR animations.\nCompleted MATLAB Machine Learning and Deep Learning Learning Paths (Credly Badges).\nCompleted multiple Infosys Springboard certification.\nWorked on an AI/ML project titled Geospatial Intelligence for Disaster Management: ML-Powered Flood Analysis\nAuthored a research paper on ML-based flood analysis (under departmental review).',
+  extraCurricular: 'Part of the core team of MATLAB Student Chapter\nActive in Cultural Activities which involve public speaking\nActive in departmental workshops and clubs.\nCoordinator in Cooding Club and its workshops',
+  weblinks: 'LINKED IN: https://www.linkedin.com/in/dhairya-sen-11000021a/',
+  references: 'Dr. Piyush Choudhary\nHoD, CSE Department\nPIEMR'
 };
 
 // Core Application State
@@ -89,7 +117,11 @@ let resumeData = {
   achievements: '',
   customEnabled: false,
   customTitle: '',
-  customBody: ''
+  customBody: '',
+  coCurricular: '',
+  extraCurricular: '',
+  weblinks: '',
+  references: ''
 };
 
 // Layout Design Styles State
@@ -165,6 +197,10 @@ function loadDataFromLocalStorage() {
   document.getElementById('input-langs').value = resumeData.langs || '';
   document.getElementById('input-hobbies').value = resumeData.hobbies || '';
   document.getElementById('input-achievements').value = resumeData.achievements || '';
+  document.getElementById('input-co-curricular').value = resumeData.coCurricular || '';
+  document.getElementById('input-extra-curricular').value = resumeData.extraCurricular || '';
+  document.getElementById('input-weblinks').value = resumeData.weblinks || '';
+  document.getElementById('input-references').value = resumeData.references || '';
   
   // Custom section state
   document.getElementById('custom-section-toggle').checked = resumeData.customEnabled || false;
@@ -386,6 +422,10 @@ function updateResumeState() {
   resumeData.langs = document.getElementById('input-langs').value;
   resumeData.hobbies = document.getElementById('input-hobbies').value;
   resumeData.achievements = document.getElementById('input-achievements').value;
+  resumeData.coCurricular = document.getElementById('input-co-curricular').value;
+  resumeData.extraCurricular = document.getElementById('input-extra-curricular').value;
+  resumeData.weblinks = document.getElementById('input-weblinks').value;
+  resumeData.references = document.getElementById('input-references').value;
   
   // Custom section fields
   resumeData.customEnabled = document.getElementById('custom-section-toggle').checked;
@@ -1247,7 +1287,11 @@ function clearForm() {
       achievements: '',
       customEnabled: false,
       customTitle: '',
-      customBody: ''
+      customBody: '',
+      coCurricular: '',
+      extraCurricular: '',
+      weblinks: '',
+      references: ''
     };
     localStorage.setItem('rc_resume_empty_intent', 'true');
     saveStateToLocalStorage();
@@ -1257,7 +1301,7 @@ function clearForm() {
 }
 
 function renderLandingPreviews() {
-  const templates = ['classic', 'modern', 'minimal', 'bold', 'tech', 'creative'];
+  const templates = ['classic', 'modern', 'minimal', 'bold', 'tech', 'creative', 'academic'];
   
   templates.forEach(tpl => {
     const container = document.getElementById(`landing-preview-${tpl}`);

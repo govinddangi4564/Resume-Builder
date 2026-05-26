@@ -135,6 +135,16 @@
             <span class="tpl-tag">Modern Creative</span>
           </div>
         </div>
+
+        <!-- Academic -->
+        <div class="tpl-showcase-card" onclick="startBuilder('academic')">
+          <div class="tpl-preview-box tpl-academic-preview" id="landing-preview-academic"></div>
+          <div class="tpl-showcase-info">
+            <h4>Academic Blue-Header</h4>
+            <p>Solid blue headers and clean academic formatting. Best for Students & Researchers.</p>
+            <span class="tpl-tag">Solid & Clean</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -369,6 +379,38 @@
               </div>
             </div>
 
+            <!-- Co-curricular Activities -->
+            <div class="form-section-card">
+              <h3>Co-curricular Activities</h3>
+              <div class="input-group full-width">
+                <textarea id="input-co-curricular" placeholder="e.g. Served as volunteer in Hackathon, Completed certification..." oninput="updateResumeState()"></textarea>
+              </div>
+            </div>
+
+            <!-- Extra-curricular Activities -->
+            <div class="form-section-card">
+              <h3>Extra-curricular Activities</h3>
+              <div class="input-group full-width">
+                <textarea id="input-extra-curricular" placeholder="e.g. Part of MATLAB Chapter, Cultural events..." oninput="updateResumeState()"></textarea>
+              </div>
+            </div>
+
+            <!-- Weblinks -->
+            <div class="form-section-card">
+              <h3>Weblinks</h3>
+              <div class="input-group full-width">
+                <textarea id="input-weblinks" placeholder="e.g. LINKED IN: linkedin.com/in/username..." oninput="updateResumeState()"></textarea>
+              </div>
+            </div>
+
+            <!-- References -->
+            <div class="form-section-card">
+              <h3>References</h3>
+              <div class="input-group full-width">
+                <textarea id="input-references" placeholder="e.g. Dr. Piyush Choudhary\nHoD, CSE Department\nPIEMR" oninput="updateResumeState()"></textarea>
+              </div>
+            </div>
+
             <!-- Custom Section -->
             <div class="form-section-card">
               <h3>Custom Section</h3>
@@ -414,6 +456,7 @@
               <option value="bold">Bold Professional</option>
               <option value="tech">Developer Syntax</option>
               <option value="creative">Creative Gradient</option>
+              <option value="academic">Academic Blue-Header</option>
             </select>
           </div>
 
