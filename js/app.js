@@ -130,6 +130,10 @@ let styleSettings = {
   font: 'dm-sans',
   accentColor: '#6d5dfc',
   margins: 'normal',
+  fontSize: 'medium',
+  lineSpacing: 'normal',
+  boldHeadings: true,
+  italicSubtitles: true,
   sectionOrder: ['summary', 'experience', 'education', 'skills', 'projects', 'certs', 'extras', 'custom']
 };
 
@@ -150,12 +154,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadDataFromLocalStorage();
   setupEventListeners();
   renderLandingPreviews();
-  
+  setupCanvasInlineEditing();
+
   // Set default form values in HTML based on loaded settings
   document.getElementById('style-select-template').value = styleSettings.template;
   document.getElementById('style-select-font').value = styleSettings.font;
   document.getElementById('style-color-accent').value = styleSettings.accentColor;
   document.getElementById('style-select-margins').value = styleSettings.margins;
+  document.getElementById('style-select-size').value = styleSettings.fontSize || 'medium';
+  document.getElementById('style-select-spacing').value = styleSettings.lineSpacing || 'normal';
+  document.getElementById('style-check-bold').checked = styleSettings.boldHeadings !== false;
+  document.getElementById('style-check-italic').checked = styleSettings.italicSubtitles !== false;
 });
 
 /**
@@ -169,7 +178,7 @@ function loadDataFromLocalStorage() {
   if (savedData) {
     try {
       resumeData = JSON.parse(savedData);
-    } catch(e) { console.error('Failed to parse saved resume data', e); }
+    } catch (e) { console.error('Failed to parse saved resume data', e); }
   }
 
   // If the resumeData is empty and the user has not explicitly cleared the form,
@@ -181,8 +190,18 @@ function loadDataFromLocalStorage() {
   if (savedStyles) {
     try {
       styleSettings = JSON.parse(savedStyles);
-    } catch(e) { console.error('Failed to parse saved design styles', e); }
+    } catch (e) { console.error('Failed to parse saved design styles', e); }
   }
+
+  // Prefill new fields from loaded styleSettings
+  if (styleSettings.fontSize) {
+    document.getElementById('style-select-size').value = styleSettings.fontSize;
+  }
+  if (styleSettings.lineSpacing) {
+    document.getElementById('style-select-spacing').value = styleSettings.lineSpacing;
+  }
+  document.getElementById('style-check-bold').checked = styleSettings.boldHeadings !== false;
+  document.getElementById('style-check-italic').checked = styleSettings.italicSubtitles !== false;
 
   // Pre-fill primary fields
   document.getElementById('input-fn').value = resumeData.fn || '';
@@ -201,7 +220,7 @@ function loadDataFromLocalStorage() {
   document.getElementById('input-extra-curricular').value = resumeData.extraCurricular || '';
   document.getElementById('input-weblinks').value = resumeData.weblinks || '';
   document.getElementById('input-references').value = resumeData.references || '';
-  
+
   // Custom section state
   document.getElementById('custom-section-toggle').checked = resumeData.customEnabled || false;
   document.getElementById('input-custom-title').value = resumeData.customTitle || '';
@@ -256,7 +275,7 @@ function loadDataFromLocalStorage() {
 function setupEventListeners() {
   // Drag and drop JSON parsing setup
   const dropZone = document.getElementById('json-drop-zone');
-  
+
   ['dragenter', 'dragover'].forEach(eventName => {
     dropZone.addEventListener(eventName, (e) => {
       e.preventDefault();
@@ -357,7 +376,7 @@ function startBuilder(preselectedTemplate) {
     saveStateToLocalStorage();
     renderResumeCanvas();
   }
-  
+
   showView('builder');
   navigateToStep(1);
 }
@@ -368,15 +387,15 @@ function goLanding() {
 
 function navigateToStep(stepNum) {
   currentStep = stepNum;
-  
+
   // Hide all panels, show target step
   for (let i = 1; i <= 5; i++) {
     const panel = document.getElementById(`step-panel-${i}`);
     const btn = document.getElementById(`btn-step${i}`);
-    
+
     panel.classList.remove('active');
     btn.classList.remove('active');
-    
+
     if (i < currentStep) {
       btn.classList.add('done');
     } else {
@@ -426,7 +445,7 @@ function updateResumeState() {
   resumeData.extraCurricular = document.getElementById('input-extra-curricular').value;
   resumeData.weblinks = document.getElementById('input-weblinks').value;
   resumeData.references = document.getElementById('input-references').value;
-  
+
   // Custom section fields
   resumeData.customEnabled = document.getElementById('custom-section-toggle').checked;
   resumeData.customTitle = document.getElementById('input-custom-title').value;
@@ -487,17 +506,52 @@ function updateResumeState() {
  */
 function renderResumeCanvas() {
   const canvas = document.getElementById('resume-canvas');
-  
+
   // Apply design classes
   canvas.className = 'resume-paper';
   canvas.classList.add(`margin-${styleSettings.margins}`);
   canvas.classList.add(`font-${styleSettings.font}`);
-  
+  canvas.classList.add(`size-${styleSettings.fontSize || 'medium'}`);
+  canvas.classList.add(`spacing-${styleSettings.lineSpacing || 'normal'}`);
+
+  if (styleSettings.boldHeadings !== false) {
+    canvas.classList.add('bold-headings');
+  }
+  if (styleSettings.italicSubtitles !== false) {
+    canvas.classList.add('italic-subtitles');
+  }
+
   // Set global dynamic values
   canvas.style.setProperty('--accent-theme', styleSettings.accentColor);
 
   // Render Template markup
   canvas.innerHTML = ResumeTemplates.render(styleSettings.template, resumeData, styleSettings);
+
+  // Make key elements editable programmatically
+  const editableSelectors = [
+    '.ro-name',
+    '.ro-subtitle',
+    '.ro-contact div',
+    '.ro-contact span',
+    '.ro-contact a',
+    '.ro-summary',
+    '.ro-item-title',
+    '.ro-item-sub',
+    '.ro-item-date',
+    '.ro-item-desc div',
+    '.ro-item-desc span',
+    '.ro-item-desc p',
+    '.ro-section-banner',
+    '.ro-title',
+    'li'
+  ];
+
+  canvas.querySelectorAll(editableSelectors.join(',')).forEach(el => {
+    if (el.children.length === 0 || (el.children.length === 1 && el.children[0].tagName === 'A')) {
+      el.setAttribute('contenteditable', 'true');
+      el.setAttribute('spellcheck', 'false');
+    }
+  });
 }
 
 /* ==========================================
@@ -557,10 +611,10 @@ function addExperienceCard(data = null) {
       </div>
     </div>
   `;
-  
+
   const container = document.getElementById('experience-list');
   container.insertAdjacentHTML('beforeend', html);
-  
+
   // Attach blur event to track bullets local suggestions
   const card = document.getElementById(id);
   card.querySelector('.exp-desc').addEventListener('blur', (e) => {
@@ -700,7 +754,7 @@ function addSkillTag(type) {
   if (!value) return;
 
   const targetArray = type === 'tech' ? resumeData.techSkills : resumeData.softSkills;
-  
+
   // Split comma separated tags
   const tags = value.split(',').map(t => t.trim()).filter(Boolean);
   tags.forEach(tag => {
@@ -727,7 +781,7 @@ function removeSkillTag(type, value) {
 function renderSkillsTags(type) {
   const container = document.getElementById(`${type}-tags-container`);
   const targetArray = type === 'tech' ? resumeData.techSkills : resumeData.softSkills;
-  
+
   container.innerHTML = targetArray.map(tag => `
     <span class="skill-tag-pill">
       ${tag}
@@ -750,6 +804,31 @@ function toggleCustomSection(shouldUpdateState = true) {
    ========================================== */
 function onTemplateChanged() {
   styleSettings.template = document.getElementById('style-select-template').value;
+  
+  const isAcademic = styleSettings.template === 'academic';
+  
+  if (isAcademic) {
+    styleSettings.accentColor = '#0a96c3';
+    document.getElementById('style-color-accent').value = '#0a96c3';
+
+    styleSettings.margins = 'compact';
+    document.getElementById('style-select-margins').value = 'compact';
+
+    styleSettings.font = 'dm-sans';
+    document.getElementById('style-select-font').value = 'dm-sans';
+
+    styleSettings.fontSize = 'small';
+    document.getElementById('style-select-size').value = 'small';
+
+    styleSettings.lineSpacing = 'compact';
+    document.getElementById('style-select-spacing').value = 'compact';
+
+    styleSettings.boldHeadings = true;
+    document.getElementById('style-check-bold').checked = true;
+
+    styleSettings.italicSubtitles = false;
+    document.getElementById('style-check-italic').checked = false;
+  }
   updateResumeState();
 }
 
@@ -757,6 +836,10 @@ function onStyleSettingsChanged() {
   styleSettings.font = document.getElementById('style-select-font').value;
   styleSettings.accentColor = document.getElementById('style-color-accent').value;
   styleSettings.margins = document.getElementById('style-select-margins').value;
+  styleSettings.fontSize = document.getElementById('style-select-size').value;
+  styleSettings.lineSpacing = document.getElementById('style-select-spacing').value;
+  styleSettings.boldHeadings = document.getElementById('style-check-bold').checked;
+  styleSettings.italicSubtitles = document.getElementById('style-check-italic').checked;
   updateResumeState();
 }
 
@@ -766,7 +849,7 @@ function onStyleSettingsChanged() {
 function openReorderModal() {
   const listContainer = document.getElementById('reorder-list');
   listContainer.innerHTML = '';
-  
+
   // Build names friendly labels mapping
   const labelsMap = {
     summary: 'Professional Summary',
@@ -781,7 +864,7 @@ function openReorderModal() {
 
   styleSettings.sectionOrder.forEach((sectionKey, index) => {
     if (sectionKey === 'custom' && !resumeData.customEnabled) return; // Skip if disabled
-    
+
     const label = labelsMap[sectionKey] || sectionKey;
     const item = document.createElement('li');
     item.className = 'reorderable-item';
@@ -808,7 +891,7 @@ function moveSectionInOrder(index, direction) {
     const temp = styleSettings.sectionOrder[index];
     styleSettings.sectionOrder[index] = styleSettings.sectionOrder[newIndex];
     styleSettings.sectionOrder[newIndex] = temp;
-    
+
     // Refresh modal list
     openReorderModal();
   }
@@ -831,7 +914,7 @@ function saveSectionOrdering() {
 async function optimizeSummary() {
   const textInput = document.getElementById('input-summary');
   const originalVal = textInput.value;
-  
+
   try {
     showToast('Optimizing', 'Enhancing professional summary...', 'info');
     const result = await AIEngine.optimizeSummary(originalVal);
@@ -906,7 +989,7 @@ function processJSONFile(file) {
       if (!parsed.fn && !parsed.exps) {
         throw new Error('JSON format is missing standard fields. Ensure it is a file exported from ResumeCraft.');
       }
-      
+
       // Merge states
       if (parsed.resumeData) {
         resumeData = parsed.resumeData;
@@ -915,16 +998,16 @@ function processJSONFile(file) {
         // Flat legacy import
         resumeData = { ...resumeData, ...parsed };
       }
-      
+
       // Update form fields
       saveStateToLocalStorage();
       loadDataFromLocalStorage();
       closeImportModal();
-      
+
       // Go to builder
       startBuilder();
       showToast('Loaded Successfully', 'Resume data and layout configurations loaded.', 'success');
-    } catch(e) {
+    } catch (e) {
       alert(`Import error: ${e.message}`);
     }
   };
@@ -936,7 +1019,7 @@ function exportJSON() {
     resumeData,
     styleSettings
   };
-  
+
   const blob = new Blob([JSON.stringify(wrapper, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -949,7 +1032,7 @@ function exportJSON() {
    ========================================== */
 function triggerPrint() {
   const originalCanvas = document.getElementById('resume-canvas');
-  
+
   // Check that first name is inputted before downloading
   if (!resumeData.fn) {
     showToast('Attention Required', 'Please fill out your contact details (First Name) before saving.', 'warning');
@@ -960,7 +1043,7 @@ function triggerPrint() {
   // Clone canvas container
   const printContainer = document.getElementById('print-only-container');
   printContainer.innerHTML = '';
-  
+
   const clone = originalCanvas.cloneNode(true);
   clone.id = 'print-rendered-resume';
   printContainer.appendChild(clone);
@@ -974,7 +1057,7 @@ function triggerPrint() {
    ========================================== */
 function showToast(header, message, type = 'info', duration = 4000) {
   const container = document.getElementById('suggestion-toast-container');
-  
+
   const toast = document.createElement('div');
   toast.className = `toast-alert toast-${type}`;
   toast.innerHTML = `
@@ -984,9 +1067,9 @@ function showToast(header, message, type = 'info', duration = 4000) {
     </div>
     <div class="toast-body">${message}</div>
   `;
-  
+
   container.appendChild(toast);
-  
+
   setTimeout(() => {
     if (toast.parentElement) {
       toast.remove();
@@ -1000,10 +1083,10 @@ function showToast(header, message, type = 'info', duration = 4000) {
 function toggleTheme() {
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
+
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem('rc_theme', newTheme);
-  
+
   updateThemeToggleButtons(newTheme);
   showToast('Theme Updated', `Switched to ${newTheme} mode.`, 'success', 2000);
 }
@@ -1013,7 +1096,7 @@ function updateThemeToggleButtons(theme) {
   const btnApp = document.getElementById('theme-toggle-app');
   const btnChecker = document.getElementById('theme-toggle-checker');
   const icon = theme === 'dark' ? '☀️' : '🌙';
-  
+
   if (btnLanding) btnLanding.textContent = icon;
   if (btnApp) btnApp.textContent = icon;
   if (btnChecker) btnChecker.textContent = icon;
@@ -1025,9 +1108,9 @@ function updateThemeToggleButtons(theme) {
 function toggleAuditPanel() {
   const drawer = document.getElementById('live-audit-checklist-drawer');
   const arrow = document.getElementById('audit-toggle-arrow');
-  
+
   drawer.classList.toggle('active');
-  
+
   if (drawer.classList.contains('active')) {
     arrow.textContent = '▲ Close Checklist';
   } else {
@@ -1039,10 +1122,10 @@ function updateLiveATSScore() {
   if (typeof ATSScanner === 'undefined') return;
   const results = ATSScanner.evaluateResume(resumeData);
   const score = results.score;
-  
+
   const scoreText = document.getElementById('score-text-mini');
   if (scoreText) scoreText.textContent = `${score}%`;
-  
+
   const circle = document.getElementById('score-circle-mini-canvas');
   if (circle) {
     circle.className = 'score-circle-mini';
@@ -1050,14 +1133,14 @@ function updateLiveATSScore() {
     else if (score < 80) circle.classList.add('score-yellow');
     else circle.classList.add('score-green');
   }
-  
+
   const statusText = document.getElementById('score-status-text');
   if (statusText) {
     if (score < 50) statusText.textContent = `Drafting: Needs Work (Score: ${score}%)`;
     else if (score < 80) statusText.textContent = `Good: Ready to Apply (Score: ${score}%)`;
     else statusText.textContent = `Excellent: Highly Optimized! (Score: ${score}%)`;
   }
-  
+
   const checklistContainer = document.getElementById('live-audit-checklist-items');
   if (checklistContainer) {
     checklistContainer.innerHTML = results.checklist.map(item => {
@@ -1086,7 +1169,7 @@ function scanPastedResume() {
   const textarea = document.getElementById('pasted-resume-text');
   const text = textarea.value;
   const result = ATSScanner.evaluatePastedText(text);
-  
+
   if (result.error) {
     alert(result.error);
     return;
@@ -1096,7 +1179,7 @@ function scanPastedResume() {
   document.getElementById('checker-results-loaded').style.display = 'flex';
 
   document.getElementById('checker-score-text').textContent = `${result.score}%`;
-  
+
   const circle = document.getElementById('checker-score-circle');
   circle.className = 'score-circle-large';
   if (result.score < 50) circle.classList.add('score-red');
@@ -1192,7 +1275,7 @@ async function processCheckerFile(file) {
     document.getElementById('pasted-resume-text').value = text;
     statusDiv.style.color = 'var(--accent-success)';
     statusDiv.textContent = `Successfully extracted text from "${file.name}"!`;
-    
+
     // Automatically trigger scan
     scanPastedResume();
   } catch (err) {
@@ -1207,9 +1290,9 @@ async function parsePDFFile(file) {
   if (typeof pdfjsLib === 'undefined') {
     throw new Error('PDF.js library is not loaded. Check your internet connection.');
   }
-  
+
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
-  
+
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
   let text = '';
@@ -1302,7 +1385,7 @@ function clearForm() {
 
 function renderLandingPreviews() {
   const templates = ['classic', 'modern', 'minimal', 'bold', 'tech', 'creative', 'academic'];
-  
+
   templates.forEach(tpl => {
     const container = document.getElementById(`landing-preview-${tpl}`);
     if (container) {
@@ -1316,3 +1399,220 @@ function renderLandingPreviews() {
     }
   });
 }
+
+/* ==========================================
+   CANVA-LIKE INLINE TEXT FORMATTING LOGIC
+   ========================================== */
+function setupCanvasInlineEditing() {
+  const canvas = document.getElementById('resume-canvas');
+  if (!canvas) return;
+
+  canvas.addEventListener('input', (e) => {
+    syncCanvasEditToState(e.target);
+  });
+
+  // Show toolbar when clicking inside editable elements
+  canvas.addEventListener('click', (e) => {
+    const el = e.target;
+    const toolbar = document.getElementById('inline-formatting-toolbar');
+    if (el.getAttribute('contenteditable') === 'true' && toolbar) {
+      toolbar.classList.add('active');
+    }
+  });
+
+  // Hide formatting toolbar when clicking outside canvas and toolbar
+  document.addEventListener('mousedown', (e) => {
+    const toolbar = document.getElementById('inline-formatting-toolbar');
+    const canvas = document.getElementById('resume-canvas');
+    if (toolbar && canvas && !canvas.contains(e.target) && !toolbar.contains(e.target)) {
+      toolbar.classList.remove('active');
+    }
+  });
+}
+
+function applyInlineFormat(command) {
+  document.execCommand(command, false, null);
+  const activeEl = document.activeElement;
+  if (activeEl && activeEl.getAttribute('contenteditable') === 'true') {
+    syncCanvasEditToState(activeEl);
+  }
+}
+
+function changeSelectedFontSize(direction) {
+  const selection = window.getSelection();
+  if (selection.rangeCount > 0 && !selection.isCollapsed) {
+    const range = selection.getRangeAt(0);
+    
+    // Determine current size of selection
+    let parent = selection.anchorNode.parentNode;
+    let currentSizePx = 13; // default fallback
+    
+    if (parent && parent.style && parent.style.fontSize) {
+      currentSizePx = parseFloat(parent.style.fontSize);
+    } else if (parent) {
+      const computed = window.getComputedStyle(parent);
+      currentSizePx = parseFloat(computed.fontSize);
+    }
+    
+    const newSize = Math.max(8, Math.min(48, currentSizePx + direction));
+    
+    // Create span for size formatting
+    const span = document.createElement('span');
+    span.style.fontSize = newSize + 'px';
+    
+    try {
+      // Wrap selection in styled span
+      span.appendChild(range.extractContents());
+      range.insertNode(span);
+      
+      // Select the newly formatted node
+      selection.removeAllRanges();
+      const newRange = document.createRange();
+      newRange.selectNodeContents(span);
+      selection.addRange(newRange);
+    } catch (e) {
+      // Simple fallback if cross-node selection
+      document.execCommand('fontSize', false, '3');
+    }
+    
+    const editable = span.closest('[contenteditable="true"]');
+    if (editable) {
+      syncCanvasEditToState(editable);
+    }
+  } else if (selection.rangeCount > 0) {
+    // If no text is selected, scale the whole element as a fallback
+    let container = selection.getRangeAt(0).startContainer;
+    if (container.nodeType === 3) {
+      container = container.parentNode;
+    }
+    const editable = container.closest('[contenteditable="true"]');
+    if (editable) {
+      const currentSize = window.getComputedStyle(editable).fontSize;
+      const currentSizePx = parseFloat(currentSize);
+      const newSize = Math.max(8, Math.min(48, currentSizePx + direction));
+      editable.style.fontSize = newSize + 'px';
+      syncCanvasEditToState(editable);
+    }
+  }
+}
+
+function syncCanvasEditToState(el) {
+  const text = el.innerText.trim();
+  const html = el.innerHTML.trim();
+
+  if (el.classList.contains('ro-name')) {
+    const parts = text.split(/\s+/);
+    resumeData.fn = parts[0] || '';
+    resumeData.ln = parts.slice(1).join(' ');
+    document.getElementById('input-fn').value = resumeData.fn;
+    document.getElementById('input-ln').value = resumeData.ln;
+  }
+  else if (el.classList.contains('ro-subtitle')) {
+    resumeData.title = text;
+    document.getElementById('input-title').value = text;
+  }
+  else if (el.classList.contains('ro-summary')) {
+    // Store HTML to preserve rich format (e.g. bolded words, custom sizes)
+    resumeData.summary = html;
+    document.getElementById('input-summary').value = text;
+  }
+
+  const itemEl = el.closest('.ro-item');
+  if (itemEl) {
+    const sectionEl = itemEl.closest('.ro-section');
+    if (sectionEl) {
+      const banner = sectionEl.querySelector('.ro-section-banner, .ro-title');
+      const title = (banner?.innerText || '').toLowerCase();
+      const items = Array.from(sectionEl.querySelectorAll('.ro-item'));
+      const idx = items.indexOf(itemEl);
+
+      if (title.includes('experience') || title.includes('seminars') || title.includes('workshops')) {
+        const exp = resumeData.exps[idx];
+        if (exp) {
+          if (el.classList.contains('ro-item-title')) {
+            exp.title = text;
+            const card = document.querySelectorAll('#experience-list .dynamic-card')[idx];
+            if (card) card.querySelector('.exp-title').value = text;
+          }
+          else if (el.classList.contains('ro-item-sub')) {
+            exp.company = text;
+            const card = document.querySelectorAll('#experience-list .dynamic-card')[idx];
+            if (card) card.querySelector('.exp-company').value = text;
+          }
+          else if (el.classList.contains('ro-item-date')) {
+            exp.end = text;
+            const card = document.querySelectorAll('#experience-list .dynamic-card')[idx];
+            if (card) card.querySelector('.exp-end').value = text;
+          }
+          else if (el.closest('.ro-item-desc')) {
+            const descEl = itemEl.querySelector('.ro-item-desc');
+            const bullets = Array.from(descEl.querySelectorAll('.ro-bullet'));
+            let lines = [];
+            
+            if (bullets.length > 0) {
+              lines = bullets.map(b => {
+                const textSpan = b.children[1] || b;
+                return textSpan.innerHTML.replace(/^[•\-▫○o]\s*/, '').trim();
+              });
+            } else {
+              const divs = Array.from(descEl.querySelectorAll('div, span, p'));
+              lines = divs.length > 0
+                ? divs.map(d => d.innerHTML.replace(/^[•\-▫○o]\s*/, '').trim()).filter(Boolean)
+                : [descEl.innerHTML.trim()];
+            }
+            
+            exp.desc = lines.map(line => `• ${line}`).join('\n');
+            const card = document.querySelectorAll('#experience-list .dynamic-card')[idx];
+            if (card) {
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = exp.desc;
+              card.querySelector('.exp-desc').value = tempDiv.innerText;
+            }
+          }
+        }
+      }
+      else if (title.includes('education')) {
+        const edu = resumeData.edus[idx];
+        if (edu) {
+          if (el.classList.contains('ro-item-title')) {
+            edu.deg = text;
+            const card = document.querySelectorAll('#education-list .dynamic-card')[idx];
+            if (card) card.querySelector('.edu-deg').value = text;
+          }
+          else if (el.classList.contains('ro-item-sub')) {
+            edu.inst = text;
+            const card = document.querySelectorAll('#education-list .dynamic-card')[idx];
+            if (card) card.querySelector('.edu-inst').value = text;
+          }
+          else if (el.classList.contains('ro-item-date')) {
+            edu.end = text;
+            const card = document.querySelectorAll('#education-list .dynamic-card')[idx];
+            if (card) card.querySelector('.edu-end').value = text;
+          }
+        }
+      }
+      else if (title.includes('projects')) {
+        const proj = resumeData.projs[idx];
+        if (proj) {
+          if (el.classList.contains('ro-item-title')) {
+            proj.name = text;
+            const card = document.querySelectorAll('#projects-list .dynamic-card')[idx];
+            if (card) card.querySelector('.proj-name').value = text;
+          }
+          else if (el.closest('.ro-item-desc')) {
+            proj.desc = html;
+            const card = document.querySelectorAll('#projects-list .dynamic-card')[idx];
+            if (card) {
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = proj.desc;
+              card.querySelector('.proj-desc').value = tempDiv.innerText;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  localStorage.setItem('rc_resume_data', JSON.stringify(resumeData));
+}
+

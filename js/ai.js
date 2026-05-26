@@ -207,7 +207,7 @@ const AIEngine = {
    */
   async callClaudeAPI(prompt) {
     const url = 'https://api.anthropic.com/v1/messages';
-    
+
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -246,7 +246,7 @@ const AIEngine = {
    */
   simulateLocalAIImprovement(text, type, context = '') {
     let result = text;
-    
+
     if (type === 'summary') {
       // Basic enhancements: capitalize, fix passive verbs, add standard professional intro
       let lines = text.split('.').map(s => s.trim()).filter(Boolean);
@@ -261,7 +261,7 @@ const AIEngine = {
         });
         return enhanced;
       });
-      
+
       // Capitalize properly
       result = lines.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('. ') + '.';
       if (!result.includes('Results-driven') && !result.includes('Result-oriented') && !result.includes('Dedicated')) {
@@ -272,7 +272,7 @@ const AIEngine = {
       let lines = text.split('\n').map(s => s.trim()).filter(Boolean);
       const enhancedLines = lines.map(line => {
         let clean = line.replace(/^[•\-*›]\s*/, '').trim();
-        
+
         // Enhance weak verbs at the start of bullets
         AIEngine.weakVerbsMap.forEach(rule => {
           rule.patterns.forEach(pat => {
@@ -285,12 +285,12 @@ const AIEngine = {
 
         // Ensure starts with upper case
         clean = clean.charAt(0).toUpperCase() + clean.slice(1);
-        
+
         // Append metric tip if missing numbers
         if (!/\d/.test(clean)) {
           clean += ' resulting in a 15% increase in efficiency';
         }
-        
+
         return `• ${clean}`;
       });
       result = enhancedLines.join('\n');

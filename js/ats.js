@@ -28,7 +28,7 @@ const ATSScanner = {
     if (d.phone && d.phone.trim().length > 5) contactPts += 3;
     if (d.location && d.location.trim().length > 3) contactPts += 3;
     if (d.linkedin && d.linkedin.trim().length > 5) contactPts += 3;
-    
+
     score += contactPts;
     checklist.push({
       section: 'contact',
@@ -56,7 +56,7 @@ const ATSScanner = {
       passed: summaryPts === 10,
       pts: summaryPts,
       max: 10,
-      tip: hasSummary 
+      tip: hasSummary
         ? 'Your summary is either too short or too long. Aim for a concise paragraph of 2-3 sentences (100 to 400 characters).'
         : 'Write a professional summary outlining your top achievements and core technical skills to capture attention.'
     });
@@ -92,9 +92,9 @@ const ATSScanner = {
       if (metricsFound >= 2) expPts += 5;
       else if (metricsFound >= 1) expPts += 2;
     }
-    
+
     score += expPts;
-    
+
     let expTip = '';
     if (!hasExp) {
       expTip = 'Add at least one work experience entry. If you are a fresher, include internships, volunteering, or freelance projects.';
@@ -135,7 +135,7 @@ const ATSScanner = {
       passed: eduPts === 15,
       pts: eduPts,
       max: 15,
-      tip: hasEdu 
+      tip: hasEdu
         ? 'Make sure degree names, institutions, and end dates are fully written out for all education items.'
         : 'Add your college degree or highest educational qualification.'
     });
@@ -350,7 +350,7 @@ const ATSScanner = {
     // 4. Numbers / Metrics density
     const metricsMatch = cleanText.match(/\b\d+%?\b|\b(percent|\$|usd|inr|hours|days|users)\b/g);
     const metricsCount = metricsMatch ? metricsMatch.length : 0;
-    
+
     if (metricsCount >= 4) {
       score += 10;
     } else if (metricsCount >= 1) {

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Build highly polished, ATS-optimized resumes for free with zero signups. Real-time split-screen builder, 6 professional templates, local auto-save, and optional AI enhancement.">
+  <meta name="description"
+    content="Build highly polished, ATS-optimized resumes for free with zero signups. Real-time split-screen builder, 6 professional templates, local auto-save, and optional AI enhancement.">
   <title>ResumeCraft AI - 100% Free ATS Resume Builder</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Syne:wght@400..800&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Syne:wght@400..800&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
   <!-- ==================== DASHBOARD LANDING PAGE ==================== -->
@@ -22,7 +27,9 @@
           <span class="logo-icon">✦</span> Resume<span>Craft</span>
         </div>
         <div class="nav-links">
-          <button class="btn btn-ghost" id="theme-toggle-landing" onclick="toggleTheme()" style="padding: 0.5rem; font-size: 1.1rem; min-width: 40px;" aria-label="Toggle light/dark theme">🌙</button>
+          <button class="btn btn-ghost" id="theme-toggle-landing" onclick="toggleTheme()"
+            style="padding: 0.5rem; font-size: 1.1rem; min-width: 40px;"
+            aria-label="Toggle light/dark theme">🌙</button>
           <a href="#templates-section" class="nav-link">Templates</a>
           <a href="#features-section" class="nav-link">Features</a>
           <button class="btn btn-outline" onclick="showView('checker')">ATS Checker</button>
@@ -40,8 +47,9 @@
           100% Free • No Registration Required • ATS-Friendly
         </div>
         <h1>Land Your Dream Job with an <span class="gradient-text">ATS-Optimized</span> Resume</h1>
-        <p class="hero-lead">Craft professional, parser-proof resumes in real-time. Choose a premium template, let AI refine your content, and download instantly without leaving your browser.</p>
-        
+        <p class="hero-lead">Craft professional, parser-proof resumes in real-time. Choose a premium template, let AI
+          refine your content, and download instantly without leaving your browser.</p>
+
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" onclick="startBuilder(null)">
             Start Building Free <span class="btn-subtext">$0 forever</span>
@@ -74,7 +82,7 @@
         <h2>Curated ATS Templates</h2>
         <p>Pick a template to pre-load and start customizing. Switch anytime during editing.</p>
       </div>
-      
+
       <div class="templates-grid">
         <!-- Classic -->
         <div class="tpl-showcase-card" onclick="startBuilder('classic')">
@@ -174,7 +182,8 @@
         <div class="feature-card">
           <div class="feat-icon">💡</div>
           <h3>AI Writing Helper</h3>
-          <p>Instantly rewrite passive phrases into strong action items, or hook up your API keys for real AI enhancements.</p>
+          <p>Instantly rewrite passive phrases into strong action items, or hook up your API keys for real AI
+            enhancements.</p>
         </div>
         <div class="feature-card">
           <div class="feat-icon">📂</div>
@@ -213,7 +222,8 @@
         <button class="step-btn" id="btn-step5" onclick="navigateToStep(5)">5. Extras & Custom</button>
       </div>
       <div class="app-actions">
-        <button class="btn btn-outline btn-sm" id="theme-toggle-app" onclick="toggleTheme()" style="padding: 0.4rem; font-size: 1rem; min-width: 36px;" aria-label="Toggle light/dark theme">🌙</button>
+        <button class="btn btn-outline btn-sm" id="theme-toggle-app" onclick="toggleTheme()"
+          style="padding: 0.4rem; font-size: 1rem; min-width: 36px;" aria-label="Toggle light/dark theme">🌙</button>
         <button class="btn btn-outline btn-sm" onclick="showView('checker')">📊 ATS Checker</button>
         <button class="btn btn-outline btn-sm" onclick="exportJSON()">💾 Save JSON</button>
         <button class="btn btn-primary btn-sm" onclick="triggerPrint()">🖨️ Download PDF</button>
@@ -225,7 +235,7 @@
       <!-- Left Column: Form Editor -->
       <section class="form-editor">
         <div class="form-steps-container">
-          
+
           <!-- STEP 1: Personal Info -->
           <div id="step-panel-1" class="step-panel active">
             <div class="panel-header">
@@ -249,7 +259,8 @@
             <div class="form-grid">
               <div class="input-group">
                 <label for="input-title">Professional Title *</label>
-                <input type="text" id="input-title" placeholder="e.g. Full Stack Engineer" oninput="updateResumeState()">
+                <input type="text" id="input-title" placeholder="e.g. Full Stack Engineer"
+                  oninput="updateResumeState()">
               </div>
               <div class="input-group">
                 <label for="input-email">Email Address *</label>
@@ -269,17 +280,21 @@
             <div class="form-grid">
               <div class="input-group">
                 <label for="input-linkedin">LinkedIn Profile URL</label>
-                <input type="text" id="input-linkedin" placeholder="e.g. linkedin.com/in/username" oninput="updateResumeState()">
+                <input type="text" id="input-linkedin" placeholder="e.g. linkedin.com/in/username"
+                  oninput="updateResumeState()">
               </div>
               <div class="input-group">
                 <label for="input-github">GitHub / Portfolio URL</label>
-                <input type="text" id="input-github" placeholder="e.g. github.com/username" oninput="updateResumeState()">
+                <input type="text" id="input-github" placeholder="e.g. github.com/username"
+                  oninput="updateResumeState()">
               </div>
             </div>
             <div class="input-group full-width">
               <label for="input-summary">Professional Summary</label>
               <div class="summary-area-container">
-                <textarea id="input-summary" placeholder="Write a summary (2-3 sentences) outlining your expertise and goals..." oninput="updateResumeState()"></textarea>
+                <textarea id="input-summary"
+                  placeholder="Write a summary (2-3 sentences) outlining your expertise and goals..."
+                  oninput="updateResumeState()"></textarea>
                 <button class="btn btn-sparkle" onclick="optimizeSummary()">✦ Optimize with AI</button>
               </div>
             </div>
@@ -317,7 +332,8 @@
               <h3>Technical Skills</h3>
               <p class="section-helper">Press Enter or click Add to save a skill.</p>
               <div class="tag-input-wrapper">
-                <input type="text" id="tech-skill-input" placeholder="e.g. JavaScript, Python, AWS..." onkeydown="handleSkillKey(event, 'tech')">
+                <input type="text" id="tech-skill-input" placeholder="e.g. JavaScript, Python, AWS..."
+                  onkeydown="handleSkillKey(event, 'tech')">
                 <button class="btn btn-primary" onclick="addSkillTag('tech')">Add</button>
               </div>
               <div id="tech-tags-container" class="tags-container"></div>
@@ -328,7 +344,8 @@
               <h3>Soft Skills & Domain Expertise</h3>
               <p class="section-helper">Press Enter or click Add to save a skill.</p>
               <div class="tag-input-wrapper">
-                <input type="text" id="soft-skill-input" placeholder="e.g. Project Management, Agile, Leadership..." onkeydown="handleSkillKey(event, 'soft')">
+                <input type="text" id="soft-skill-input" placeholder="e.g. Project Management, Agile, Leadership..."
+                  onkeydown="handleSkillKey(event, 'soft')">
                 <button class="btn btn-primary" onclick="addSkillTag('soft')">Add</button>
               </div>
               <div id="soft-tags-container" class="tags-container"></div>
@@ -362,11 +379,13 @@
               <div class="form-grid">
                 <div class="input-group">
                   <label for="input-langs">Languages</label>
-                  <input type="text" id="input-langs" placeholder="e.g. English (Native), French (B2)" oninput="updateResumeState()">
+                  <input type="text" id="input-langs" placeholder="e.g. English (Native), French (B2)"
+                    oninput="updateResumeState()">
                 </div>
                 <div class="input-group">
                   <label for="input-hobbies">Hobbies & Interests</label>
-                  <input type="text" id="input-hobbies" placeholder="e.g. Competitive Programming, Hiking" oninput="updateResumeState()">
+                  <input type="text" id="input-hobbies" placeholder="e.g. Competitive Programming, Hiking"
+                    oninput="updateResumeState()">
                 </div>
               </div>
             </div>
@@ -375,7 +394,9 @@
             <div class="form-section-card">
               <h3>Achievements & Publications</h3>
               <div class="input-group full-width">
-                <textarea id="input-achievements" placeholder="e.g. Winner of National Hackathon 2025, Published paper on AI at IEEE..." oninput="updateResumeState()"></textarea>
+                <textarea id="input-achievements"
+                  placeholder="e.g. Winner of National Hackathon 2025, Published paper on AI at IEEE..."
+                  oninput="updateResumeState()"></textarea>
               </div>
             </div>
 
@@ -383,7 +404,9 @@
             <div class="form-section-card">
               <h3>Co-curricular Activities</h3>
               <div class="input-group full-width">
-                <textarea id="input-co-curricular" placeholder="e.g. Served as volunteer in Hackathon, Completed certification..." oninput="updateResumeState()"></textarea>
+                <textarea id="input-co-curricular"
+                  placeholder="e.g. Served as volunteer in Hackathon, Completed certification..."
+                  oninput="updateResumeState()"></textarea>
               </div>
             </div>
 
@@ -391,7 +414,8 @@
             <div class="form-section-card">
               <h3>Extra-curricular Activities</h3>
               <div class="input-group full-width">
-                <textarea id="input-extra-curricular" placeholder="e.g. Part of MATLAB Chapter, Cultural events..." oninput="updateResumeState()"></textarea>
+                <textarea id="input-extra-curricular" placeholder="e.g. Part of MATLAB Chapter, Cultural events..."
+                  oninput="updateResumeState()"></textarea>
               </div>
             </div>
 
@@ -399,7 +423,8 @@
             <div class="form-section-card">
               <h3>Weblinks</h3>
               <div class="input-group full-width">
-                <textarea id="input-weblinks" placeholder="e.g. LINKED IN: linkedin.com/in/username..." oninput="updateResumeState()"></textarea>
+                <textarea id="input-weblinks" placeholder="e.g. LINKED IN: linkedin.com/in/username..."
+                  oninput="updateResumeState()"></textarea>
               </div>
             </div>
 
@@ -407,7 +432,8 @@
             <div class="form-section-card">
               <h3>References</h3>
               <div class="input-group full-width">
-                <textarea id="input-references" placeholder="e.g. Dr. Piyush Choudhary\nHoD, CSE Department\nPIEMR" oninput="updateResumeState()"></textarea>
+                <textarea id="input-references" placeholder="e.g. Dr. Piyush Choudhary\nHoD, CSE Department\nPIEMR"
+                  oninput="updateResumeState()"></textarea>
               </div>
             </div>
 
@@ -424,11 +450,13 @@
               <div id="custom-section-fields" style="display:none; margin-top: 1rem;">
                 <div class="input-group">
                   <label for="input-custom-title">Section Title</label>
-                  <input type="text" id="input-custom-title" placeholder="e.g. Volunteer Experience, Publications" oninput="updateResumeState()">
+                  <input type="text" id="input-custom-title" placeholder="e.g. Volunteer Experience, Publications"
+                    oninput="updateResumeState()">
                 </div>
                 <div class="input-group full-width" style="margin-top: 1rem;">
                   <label for="input-custom-body">Section Content (Markdown/List supported)</label>
-                  <textarea id="input-custom-body" placeholder="Write details here, separated by newlines..." oninput="updateResumeState()"></textarea>
+                  <textarea id="input-custom-body" placeholder="Write details here, separated by newlines..."
+                    oninput="updateResumeState()"></textarea>
                 </div>
               </div>
             </div>
@@ -487,11 +515,38 @@
             </select>
           </div>
 
+          <div class="control-group">
+            <label for="style-select-size">Size</label>
+            <select id="style-select-size" onchange="onStyleSettingsChanged()">
+              <option value="small">Small</option>
+              <option value="medium" selected>Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="style-select-spacing">Spacing</label>
+            <select id="style-select-spacing" onchange="onStyleSettingsChanged()">
+              <option value="compact">Compact</option>
+              <option value="normal" selected>Normal</option>
+              <option value="relaxed">Relaxed</option>
+            </select>
+          </div>
+
+          <div class="control-group check-group-inline" style="display: flex; gap: 0.75rem; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">
+            <label style="display: flex; align-items: center; gap: 0.25rem; cursor: pointer;">
+              <input type="checkbox" id="style-check-bold" onchange="onStyleSettingsChanged()" checked> Bold Header
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.25rem; cursor: pointer;">
+              <input type="checkbox" id="style-check-italic" onchange="onStyleSettingsChanged()" checked> Italic Sub
+            </label>
+          </div>
+
           <div class="control-group reorder-btn-group">
             <button class="btn btn-outline btn-xs" onclick="openReorderModal()">⇅ Reorder Sections</button>
           </div>
         </div>
-        
+
         <!-- Live Audit Scorer Bar -->
         <div class="live-audit-bar" onclick="toggleAuditPanel()">
           <div class="live-score-widget">
@@ -503,7 +558,8 @@
               <div class="audit-status-text" id="score-status-text">Drafting (Complete contact info to start)</div>
             </div>
           </div>
-          <button class="btn btn-ghost btn-xs" id="audit-toggle-arrow" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">▼ See Checklist</button>
+          <button class="btn btn-ghost btn-xs" id="audit-toggle-arrow"
+            style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">▼ See Checklist</button>
         </div>
 
         <!-- Collapsible Audit Panel -->
@@ -514,7 +570,21 @@
         </div>
 
         <!-- Resume Page Frame -->
-        <div class="resume-preview-frame">
+        <div class="resume-preview-frame" style="position: relative;">
+          <!-- Canva-like formatting toolbar -->
+          <div class="canvas-formatting-toolbar" id="inline-formatting-toolbar">
+            <button class="format-btn" onclick="applyInlineFormat('bold')" title="Bold"><b>B</b></button>
+            <button class="format-btn" onclick="applyInlineFormat('italic')" title="Italic"><i>I</i></button>
+            <button class="format-btn" onclick="applyInlineFormat('underline')" title="Underline"><u>U</u></button>
+            <span class="toolbar-divider"></span>
+            <button class="format-btn" onclick="changeSelectedFontSize(1)" title="Increase Size">A+</button>
+            <button class="format-btn" onclick="changeSelectedFontSize(-1)" title="Decrease Size">A-</button>
+            <span class="toolbar-divider"></span>
+            <button class="format-btn" onclick="applyInlineFormat('justifyLeft')" title="Align Left">←</button>
+            <button class="format-btn" onclick="applyInlineFormat('justifyCenter')" title="Align Center">↔</button>
+            <button class="format-btn" onclick="applyInlineFormat('justifyRight')" title="Align Right">→</button>
+            <button class="format-btn" onclick="applyInlineFormat('justifyFull')" title="Justify">≡</button>
+          </div>
           <div class="resume-paper" id="resume-canvas">
             <!-- Rendered dynamic content goes here -->
           </div>
@@ -534,10 +604,11 @@
       </div>
       <div class="modal-body">
         <p>Import a previously saved `.json` file from ResumeCraft to restore your data and layout configuration.</p>
-        
+
         <div class="drag-drop-zone" id="json-drop-zone">
           <p>Drag and drop your `resume.json` file here, or click to upload.</p>
-          <input type="file" id="json-file-input" accept=".json" style="display: none;" onchange="handleFileSelect(event)">
+          <input type="file" id="json-file-input" accept=".json" style="display: none;"
+            onchange="handleFileSelect(event)">
           <button class="btn btn-outline btn-sm" onclick="triggerFileInput()">Select File</button>
         </div>
       </div>
@@ -576,7 +647,9 @@
           <span class="logo-icon">✦</span> Resume<span>Craft</span>
         </div>
         <div class="nav-links">
-          <button class="btn btn-ghost" id="theme-toggle-checker" onclick="toggleTheme()" style="padding: 0.5rem; font-size: 1.1rem; min-width: 40px;" aria-label="Toggle light/dark theme">🌙</button>
+          <button class="btn btn-ghost" id="theme-toggle-checker" onclick="toggleTheme()"
+            style="padding: 0.5rem; font-size: 1.1rem; min-width: 40px;"
+            aria-label="Toggle light/dark theme">🌙</button>
           <button class="btn btn-outline" onclick="showView('builder')">Resume Builder</button>
           <button class="btn btn-ghost" onclick="showView('landing')">Home</button>
         </div>
@@ -584,27 +657,38 @@
     </nav>
 
     <!-- Main Scanner Body -->
-    <main class="checker-container" style="flex: 1; max-width: 1200px; margin: 0 auto; width: 100%; padding: 3rem 2rem; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem;">
+    <main class="checker-container"
+      style="flex: 1; max-width: 1200px; margin: 0 auto; width: 100%; padding: 3rem 2rem; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem;">
       <!-- Left Column: Paste Area & File Upload -->
       <section class="checker-left-col">
         <div class="checker-header-block" style="margin-bottom: 2rem;">
-          <h2 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px;">External ATS Resume Auditor</h2>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">Paste the text of your existing resume to analyze its keyword density, sections parsing, power verbs, and ATS compatibility score.</p>
+          <h2
+            style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px;">
+            External ATS Resume Auditor</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Paste the text of your existing resume to analyze its
+            keyword density, sections parsing, power verbs, and ATS compatibility score.</p>
         </div>
 
         <!-- Drag & Drop Zone -->
-        <div class="drag-drop-zone" id="checker-file-drop-zone" style="margin-bottom: 1.5rem; border: 2px dashed var(--border-color); border-radius: var(--radius-lg); padding: 2rem; text-align: center; background-color: var(--bg-card); transition: all var(--transition-normal); cursor: pointer;">
+        <div class="drag-drop-zone" id="checker-file-drop-zone"
+          style="margin-bottom: 1.5rem; border: 2px dashed var(--border-color); border-radius: var(--radius-lg); padding: 2rem; text-align: center; background-color: var(--bg-card); transition: all var(--transition-normal); cursor: pointer;">
           <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📄</div>
           <p style="font-weight: 700; margin-bottom: 0.25rem;">Drag & drop your resume file here</p>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Supports PDF, DOCX, TXT, PNG, JPG, JPEG</p>
-          <input type="file" id="checker-file-input" accept=".pdf,.docx,.txt,image/*" style="display: none;" onchange="handleCheckerFileSelect(event)">
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Supports PDF, DOCX, TXT, PNG,
+            JPG, JPEG</p>
+          <input type="file" id="checker-file-input" accept=".pdf,.docx,.txt,image/*" style="display: none;"
+            onchange="handleCheckerFileSelect(event)">
           <button class="btn btn-outline btn-sm" onclick="triggerCheckerFileInput(event)">Choose File</button>
-          <div id="checker-file-status" style="margin-top: 0.75rem; font-size: 0.85rem; font-weight: 600; color: var(--accent-color); display: none;"></div>
+          <div id="checker-file-status"
+            style="margin-top: 0.75rem; font-size: 0.85rem; font-weight: 600; color: var(--accent-color); display: none;">
+          </div>
         </div>
 
         <div class="input-group full-width" style="margin-bottom: 1.5rem;">
           <label for="pasted-resume-text" style="font-weight: 700;">Paste or Extracted Resume Plain Text</label>
-          <textarea id="pasted-resume-text" placeholder="Copy text from your PDF or Word document (Ctrl+A -> Ctrl+C in your document) and paste it here..." style="min-height: 200px; font-family: var(--font-interface); border-radius: var(--radius-lg);"></textarea>
+          <textarea id="pasted-resume-text"
+            placeholder="Copy text from your PDF or Word document (Ctrl+A -> Ctrl+C in your document) and paste it here..."
+            style="min-height: 200px; font-family: var(--font-interface); border-radius: var(--radius-lg);"></textarea>
         </div>
 
         <div class="checker-action-row" style="display: flex; gap: 1rem; align-items: center;">
@@ -614,37 +698,52 @@
       </section>
 
       <!-- Right Column: Audit Results -->
-      <section class="checker-right-col" id="checker-results-empty" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px dashed var(--border-color); border-radius: var(--radius-lg); padding: 3rem; background-color: var(--bg-surface);">
+      <section class="checker-right-col" id="checker-results-empty"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px dashed var(--border-color); border-radius: var(--radius-lg); padding: 3rem; background-color: var(--bg-surface);">
         <div style="font-size: 4rem; margin-bottom: 1rem;">📊</div>
-        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Ready to Scan</h3>
-        <p style="color: var(--text-muted); max-width: 320px; font-size: 0.9rem; line-height: 1.6;">Paste your resume text on the left and click Scan to see your detailed ATS score and recommendation report here.</p>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Ready
+          to Scan</h3>
+        <p style="color: var(--text-muted); max-width: 320px; font-size: 0.9rem; line-height: 1.6;">Paste your resume
+          text on the left and click Scan to see your detailed ATS score and recommendation report here.</p>
       </section>
 
-      <section class="checker-right-col" id="checker-results-loaded" style="display: none; flex-direction: column; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; max-height: 80vh; overflow-y: auto;">
-        <div class="results-header" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+      <section class="checker-right-col" id="checker-results-loaded"
+        style="display: none; flex-direction: column; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; max-height: 80vh; overflow-y: auto;">
+        <div class="results-header"
+          style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
           <div class="score-circle-large score-red" id="checker-score-circle">
             <span id="checker-score-text">0%</span>
           </div>
           <div>
-            <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.25rem;" id="checker-score-grade">Evaluating...</h3>
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.25rem;"
+              id="checker-score-grade">Evaluating...</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem;" id="checker-score-summary-text"></p>
           </div>
         </div>
 
         <div class="results-body">
-          <div class="results-stats-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
-            <div style="background-color: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); text-align: center;">
-              <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: bold; color: var(--text-muted); margin-bottom: 0.25rem;">Active Power Verbs</div>
+          <div class="results-stats-row"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+            <div
+              style="background-color: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); text-align: center;">
+              <div
+                style="font-size: 0.75rem; text-transform: uppercase; font-weight: bold; color: var(--text-muted); margin-bottom: 0.25rem;">
+                Active Power Verbs</div>
               <strong style="font-size: 1.4rem; color: var(--accent-color);" id="checker-stat-verbs">0</strong>
             </div>
-            <div style="background-color: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); text-align: center;">
-              <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: bold; color: var(--text-muted); margin-bottom: 0.25rem;">Quantifiable Metrics</div>
+            <div
+              style="background-color: var(--bg-card); padding: 1rem; border-radius: var(--radius-md); text-align: center;">
+              <div
+                style="font-size: 0.75rem; text-transform: uppercase; font-weight: bold; color: var(--text-muted); margin-bottom: 0.25rem;">
+                Quantifiable Metrics</div>
               <strong style="font-size: 1.4rem; color: var(--accent-success);" id="checker-stat-metrics">0</strong>
             </div>
           </div>
 
-          <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Actionable Improvements Checklist</h4>
-          <ul class="advice-list" id="checker-advice-list" style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem;">
+          <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">
+            Actionable Improvements Checklist</h4>
+          <ul class="advice-list" id="checker-advice-list"
+            style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem;">
             <!-- Dynamic advice items will load here -->
           </ul>
         </div>
@@ -670,4 +769,5 @@
   <script src="js/app.js"></script>
 
 </body>
+
 </html>
