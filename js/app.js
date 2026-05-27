@@ -1,98 +1,74 @@
 const sampleResumeData = {
-  fn: 'Dhairya',
-  ln: 'Sen',
-  title: 'B.Tech - CSE',
-  email: '51110105130@piemr.edu.in',
-  phone: '+91-9910471971',
-  location: '',
-  linkedin: 'linkedin.com/in/dhairya-sen-11000021a/',
-  github: '',
-  summary: 'Technically driven engineering student with strong problem-solving skills, hands-on ML/DL experience, and a proven record in innovation and co-curricular achievements.',
-  techSkills: ['Python', 'C', 'C++', 'MATLAB', 'Google Earth Engine', 'Sentinel-2 Satellite Imagery', 'Geospatial Data Processing', 'Remote Sensing'],
-  softSkills: ['Problem-Solving', 'Research', 'Teamwork', 'Time Management', 'Analytical Thinking', 'Adaptability', 'Leadership'],
+  fn: 'John',
+  ln: 'Doe',
+  title: 'Senior Software Engineer',
+  email: 'john.doe@example.com',
+  phone: '+1 555-123-4567',
+  location: 'San Francisco, CA',
+  linkedin: 'linkedin.com/in/johndoe',
+  github: 'github.com/johndoe',
+  summary: 'Results-driven Senior Software Engineer with over 8 years of experience in full-stack development, cloud architecture, and technical leadership. Proven track record of delivering scalable web applications and optimizing system performance.',
+  techSkills: ['JavaScript', 'Python', 'React', 'Node.js', 'AWS', 'Docker', 'SQL', 'MongoDB'],
+  softSkills: ['Leadership', 'Agile Methodology', 'Problem-Solving', 'Communication', 'Team Mentoring'],
   exps: [
     {
-      title: 'DevOps & Automation Workshop (3 Days)',
-      company: 'PIEMR',
-      start: '',
-      end: '',
-      loc: '',
-      type: '',
-      desc: 'Attended an offline workshop organized by the college; learned the basics of AWS, Linux, and automation tools.'
+      title: 'Senior Software Engineer',
+      company: 'Tech Solutions Inc.',
+      start: 'Jan 2020',
+      end: 'Present',
+      loc: 'San Francisco, CA',
+      type: 'Full-time',
+      desc: '• Spearheaded the migration of legacy monolithic application to microservices architecture, reducing deployment time by 40%.\n• Mentored a team of 5 junior developers, conducting code reviews and pair programming sessions.\n• Designed and implemented RESTful APIs serving over 1 million daily active users.'
     },
     {
-      title: 'Metaminds AR/VR/XR Workshop (3 Days)',
-      company: 'PIEMR',
-      start: '',
-      end: '',
-      loc: '',
-      type: '',
-      desc: 'Participated in a hands-on workshop on Augmented Reality, Virtual Reality, and Extended Reality; learned core XR technologies.'
+      title: 'Software Developer',
+      company: 'WebDev Agency',
+      start: 'Jun 2016',
+      end: 'Dec 2019',
+      loc: 'Austin, TX',
+      type: 'Full-time',
+      desc: '• Developed interactive front-end web interfaces using React and Redux.\n• Optimized database queries, resulting in a 30% increase in overall application speed.\n• Collaborated with UX/UI designers to improve user engagement by 25%.'
     }
   ],
   edus: [
     {
-      deg: 'B.Tech - CSE',
-      inst: 'Prestige Institute of Engineering Management and Research',
-      start: '2023',
-      end: '2027',
-      gpa: '7.54 / 7.57',
-      course: ''
-    },
-    {
-      deg: '12th',
-      inst: 'CBSE',
-      start: '',
-      end: '2022',
-      gpa: '70.00 / 100.00',
-      course: ''
-    },
-    {
-      deg: '10th',
-      inst: 'CBSE',
-      start: '',
-      end: '2020',
-      gpa: '92.3.00 / 100.00',
-      course: ''
+      deg: 'B.S. in Computer Science',
+      inst: 'University of Technology',
+      start: '2012',
+      end: '2016',
+      gpa: '3.8 / 4.0',
+      course: 'Data Structures, Algorithms, Database Systems'
     }
   ],
   certs: [
     {
-      name: 'Awarded 1st Place –Model Making Competition (National Science Day)',
-      issuer: 'Developed an innovative Sound Visualizer that demonstrated how changes in sound frequency and pitch affect surfaces, with real-time visual wave projections showcasing strong technical creativity.'
+      name: 'AWS Certified Solutions Architect – Associate',
+      issuer: 'Amazon Web Services, 2021'
     },
     {
-      name: 'Runner-Up – Kho-Kho Tournament (Urjotsav)',
-      issuer: 'Secured the runner-up position in the intra-college Kho-Kho event held during the annual fest Urjotsav, demonstrating teamwork and athletic performance.'
-    },
-    {
-      name: 'Earned Credly Badge – Machine Learning Learning Path (MATLAB)',
-      issuer: 'Awarded for successfully completing the Machine Learning Learning Path, gaining practical experience in data preprocessing, model building, and understanding core ML algorithms.'
-    },
-    {
-      name: 'Earned Credly Badge – Deep Learning Learning Path (MATLAB)',
-      issuer: 'Recognized for completing the Deep Learning Learning Path, developing skills in neural networks, classification models, and practical deep learning applications.'
+      name: 'Certified ScrumMaster (CSM)',
+      issuer: 'Scrum Alliance, 2019'
     }
   ],
   projs: [
     {
-      name: 'FloodWatch AI: Automated Flood Detection System',
-      tech: 'Python, Google Earth Engine, Sentinel-2 Image Processing, Geospatial Analysis, Threshold-based Classification, Web Development',
-      desc: 'Mentor:Prof. Avijeet Vyas | TeamSize:4\nWeb-based flood detection system processing Sentinel-2 satellite imagery through Google Earth Engine. Implemented NDWI/MNDWI analysis with multi-layer filtering to detect flood patterns across 50+ Indian cities, achieving ~90% accuracy with real-time visualization and statistical analysis.',
-      url: '',
-      year: ''
+      name: 'E-Commerce Platform Redesign',
+      tech: 'React, Node.js, MongoDB, Redis',
+      desc: 'Led the complete frontend redesign of a major e-commerce platform. Implemented responsive design and modern state management, improving load times by 40% and increasing conversion rate by 15%.',
+      url: 'github.com/johndoe/ecommerce',
+      year: '2022'
     }
   ],
-  langs: '',
-  hobbies: '',
-  achievements: 'Developed sound visualizer demonstrating real-time wave projections based on frequency variations.\nSecured runner-up position in intra-college Kho-Kho tournament.\nCompleted Machine Learning path covering preprocessing, modeling, and ML algorithms.\nCompleted Deep Learning path covering neural networks and classification models.\nDeveloped flood detection system using Sentinel-2 imagery with ~90% accuracy across 50+ cities.',
+  langs: 'English (Native), Spanish (Conversational)',
+  hobbies: 'Hiking, Photography, Open Source Contributing',
+  achievements: 'Awarded "Employee of the Year" in 2021 for outstanding contributions to the core product line.\nPublished an article on modern web performance optimization in a leading tech blog.',
   customEnabled: true,
-  customTitle: 'PUBLICATIONS / RESEARCH / WHITE PAPERS',
-  customBody: 'Geospatial Intelligence for Disaster Management: ML-Powered Flood Analysis\nMentor: Prof. Avijeet Vyas | No. of Authors: 4\nKey Skills: Satellite Image Analysis, Google Earth Engine, Remote Sensing, Geospatial Intelligence, Water Index Computation (NDWI/MNDWI), Threshold-based Classification, Research Documentation',
-  coCurricular: 'Served as a volunteer in the Engineering Day Hackathon, assisting with event coordination and participant support.\nCompleted a 3-day AR/VR/XR Metaminds workshop and created basic XR animations.\nCompleted MATLAB Machine Learning and Deep Learning Learning Paths (Credly Badges).\nCompleted multiple Infosys Springboard certification.\nWorked on an AI/ML project titled Geospatial Intelligence for Disaster Management: ML-Powered Flood Analysis\nAuthored a research paper on ML-based flood analysis (under departmental review).',
-  extraCurricular: 'Part of the core team of MATLAB Student Chapter\nActive in Cultural Activities which involve public speaking\nActive in departmental workshops and clubs.\nCoordinator in Cooding Club and its workshops',
-  weblinks: 'LINKED IN: https://www.linkedin.com/in/dhairya-sen-11000021a/',
-  references: 'Dr. Piyush Choudhary\nHoD, CSE Department\nPIEMR'
+  customTitle: 'PUBLICATIONS / ARTICLES',
+  customBody: 'The Future of Microservices\nPublished in Tech Insider, 2022\nA deep dive into scaling architectures for growing startups.',
+  coCurricular: 'Open Source Maintainer for multiple JavaScript libraries.\nRegular speaker at local tech meetups.',
+  extraCurricular: 'Volunteer coding instructor at local community center.\nOrganizer of the annual city hackathon.',
+  weblinks: 'PORTFOLIO: johndoe.dev',
+  references: 'Available upon request.'
 };
 
 // Core Application State
@@ -134,6 +110,10 @@ let styleSettings = {
   lineSpacing: 'normal',
   boldHeadings: true,
   italicSubtitles: true,
+  canvaModeActive: false,
+  canvaBgColor: '#ffffff',
+  canvaLayout: {},
+  canvaCustomElements: [],
   sectionOrder: ['summary', 'experience', 'education', 'skills', 'projects', 'certs', 'extras', 'custom']
 };
 
@@ -165,6 +145,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('style-select-spacing').value = styleSettings.lineSpacing || 'normal';
   document.getElementById('style-check-bold').checked = styleSettings.boldHeadings !== false;
   document.getElementById('style-check-italic').checked = styleSettings.italicSubtitles !== false;
+  
+  // Set Canva defaults in toolbar
+  const canvaBgPicker = document.getElementById('canva-bg-picker');
+  if (canvaBgPicker) canvaBgPicker.value = styleSettings.canvaBgColor || '#ffffff';
+  updateCanvaToolbarUI();
 });
 
 /**
@@ -202,6 +187,13 @@ function loadDataFromLocalStorage() {
   }
   document.getElementById('style-check-bold').checked = styleSettings.boldHeadings !== false;
   document.getElementById('style-check-italic').checked = styleSettings.italicSubtitles !== false;
+
+  // Prefill Canva options
+  const canvaBgPicker = document.getElementById('canva-bg-picker');
+  if (canvaBgPicker) {
+    canvaBgPicker.value = styleSettings.canvaBgColor || '#ffffff';
+  }
+  updateCanvaToolbarUI();
 
   // Pre-fill primary fields
   document.getElementById('input-fn').value = resumeData.fn || '';
@@ -552,6 +544,9 @@ function renderResumeCanvas() {
       el.setAttribute('spellcheck', 'false');
     }
   });
+
+  // Apply Canva Layout if active
+  applyCanvaLayoutSettings();
 }
 
 /* ==========================================
@@ -1615,4 +1610,316 @@ function syncCanvasEditToState(el) {
 
   localStorage.setItem('rc_resume_data', JSON.stringify(resumeData));
 }
+
+/* ==========================================
+   CANVA MODE ABSOLUTE DRAG & RESIZE MECHANICS
+   ========================================== */
+let isDraggingElement = false;
+let activeDragElement = null;
+
+function toggleCanvaMode() {
+  styleSettings.canvaModeActive = !styleSettings.canvaModeActive;
+  saveStateToLocalStorage();
+  renderResumeCanvas();
+  updateCanvaToolbarUI();
+  showToast('Layout Mode', `Canva absolute placement mode turned ${styleSettings.canvaModeActive ? 'ON' : 'OFF'}.`, 'success');
+}
+
+function updateCanvaToolbarUI() {
+  const btn = document.getElementById('btn-toggle-canva');
+  if (btn) {
+    if (styleSettings.canvaModeActive) {
+      btn.classList.add('active');
+      btn.textContent = '🎨 Canva Mode: ON';
+    } else {
+      btn.classList.remove('active');
+      btn.textContent = '🎨 Canva Mode: OFF';
+    }
+  }
+}
+
+function changeCanvaBackground() {
+  const color = document.getElementById('canva-bg-picker').value;
+  styleSettings.canvaBgColor = color;
+  saveStateToLocalStorage();
+  
+  const canvas = document.getElementById('resume-canvas');
+  if (canvas && styleSettings.canvaModeActive) {
+    canvas.style.backgroundColor = color;
+  }
+}
+
+function addCanvaElement(type) {
+  if (!styleSettings.canvaModeActive) {
+    showToast('Canva Mode Required', 'Turn on Canva Mode first to add custom draggable items.', 'warning');
+    return;
+  }
+  
+  const id = `canva-el-${Date.now()}`;
+  const newItem = {
+    id: id,
+    type: type,
+    content: type === 'text' ? 'Double click to edit custom text' : '',
+    left: 100,
+    top: 150,
+    width: type === 'text' ? 250 : 150,
+    height: type === 'text' ? 50 : 8
+  };
+  
+  if (!styleSettings.canvaCustomElements) styleSettings.canvaCustomElements = [];
+  styleSettings.canvaCustomElements.push(newItem);
+  saveStateToLocalStorage();
+  renderResumeCanvas();
+}
+
+function removeCanvaElement(id) {
+  styleSettings.canvaCustomElements = (styleSettings.canvaCustomElements || []).filter(item => item.id !== id);
+  if (styleSettings.canvaLayout) {
+    delete styleSettings.canvaLayout[id];
+  }
+  saveStateToLocalStorage();
+  renderResumeCanvas();
+}
+
+function resetCanvaPositions() {
+  if (confirm('Reset all drag/resize customizations back to template defaults?')) {
+    styleSettings.canvaLayout = {};
+    styleSettings.canvaCustomElements = [];
+    styleSettings.canvaBgColor = '#ffffff';
+    document.getElementById('canva-bg-picker').value = '#ffffff';
+    saveStateToLocalStorage();
+    renderResumeCanvas();
+    showToast('Reset Complete', 'Resume layout positions reset to template defaults.', 'info');
+  }
+}
+
+function applyCanvaLayoutSettings() {
+  const canvas = document.getElementById('resume-canvas');
+  if (!canvas) return;
+
+  const paper = canvas;
+  
+  if (styleSettings.canvaModeActive) {
+    paper.classList.add('canva-mode-active');
+    paper.style.backgroundColor = styleSettings.canvaBgColor || '#ffffff';
+    
+    // Find all primary structural sections to position them
+    const blocks = Array.from(paper.querySelectorAll('header, .ro-section, aside, main, .ro-main-col, .ro-sidebar'));
+    
+    // Switch to absolute positioning
+    blocks.forEach((el, index) => {
+      const key = `block-${el.tagName.toLowerCase()}-${index}`;
+      
+      // If we already have saved coordinates, apply them
+      if (styleSettings.canvaLayout && styleSettings.canvaLayout[key]) {
+        const coords = styleSettings.canvaLayout[key];
+        el.style.position = 'absolute';
+        el.style.left = coords.left + 'px';
+        el.style.top = coords.top + 'px';
+        el.style.width = coords.width + 'px';
+        if (coords.height) el.style.height = coords.height + 'px';
+      } else {
+        // Capture current flow positions before absolute shift
+        const rect = el.getBoundingClientRect();
+        const paperRect = paper.getBoundingClientRect();
+        
+        const relativeLeft = rect.left - paperRect.left;
+        const relativeTop = rect.top - paperRect.top;
+        
+        el.style.position = 'absolute';
+        el.style.left = relativeLeft + 'px';
+        el.style.top = relativeTop + 'px';
+        el.style.width = el.offsetWidth + 'px';
+        
+        if (!styleSettings.canvaLayout) styleSettings.canvaLayout = {};
+        styleSettings.canvaLayout[key] = {
+          left: relativeLeft,
+          top: relativeTop,
+          width: el.offsetWidth,
+          height: el.offsetHeight
+        };
+      }
+      
+      makeElementDraggable(el, key);
+    });
+
+    // Render custom elements
+    renderCanvaCustomElements();
+  } else {
+    paper.classList.remove('canva-mode-active');
+    paper.style.backgroundColor = '';
+    
+    const blocks = Array.from(paper.querySelectorAll('header, .ro-section, aside, main, .ro-main-col, .ro-sidebar'));
+    blocks.forEach(el => {
+      el.style.position = '';
+      el.style.left = '';
+      el.style.top = '';
+      el.style.width = '';
+      el.style.height = '';
+      el.classList.remove('canva-draggable', 'canva-selected');
+      el.querySelectorAll('.resize-handle, .canva-delete-btn').forEach(h => h.remove());
+    });
+  }
+}
+
+function renderCanvaCustomElements() {
+  const canvas = document.getElementById('resume-canvas');
+  if (!canvas) return;
+
+  canvas.querySelectorAll('.canva-custom-element').forEach(el => el.remove());
+
+  const customList = styleSettings.canvaCustomElements || [];
+  customList.forEach(item => {
+    const el = document.createElement('div');
+    el.className = `canva-draggable canva-custom-element ${item.type === 'line' ? 'canva-line-element' : ''}`;
+    el.id = item.id;
+    el.style.left = item.left + 'px';
+    el.style.top = item.top + 'px';
+    el.style.width = item.width + 'px';
+    el.style.height = item.height + 'px';
+    
+    if (item.type === 'text') {
+      el.innerHTML = `<div class="custom-text-content" contenteditable="true" style="width: 100%; height: 100%; outline: none; font-size: inherit; font-family: inherit;">${item.content || 'Double click to edit text'}</div>`;
+      
+      el.querySelector('.custom-text-content').addEventListener('input', (e) => {
+        item.content = e.target.innerHTML;
+        saveStateToLocalStorage();
+      });
+    } else if (item.type === 'line') {
+      el.innerHTML = `<div style="height: 2px; width: 100%; background-color: var(--accent-theme, #0a96c3);"></div>`;
+    }
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'canva-delete-btn';
+    deleteBtn.innerHTML = '×';
+    deleteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      removeCanvaElement(item.id);
+    });
+    el.appendChild(deleteBtn);
+
+    canvas.appendChild(el);
+    makeElementDraggable(el, item.id);
+  });
+}
+
+function makeElementDraggable(el, idKey) {
+  el.classList.add('canva-draggable');
+  
+  el.addEventListener('click', (e) => {
+    if (!styleSettings.canvaModeActive) return;
+    e.stopPropagation();
+    
+    document.querySelectorAll('.canva-draggable').forEach(item => item.classList.remove('canva-selected'));
+    el.classList.add('canva-selected');
+  });
+
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+  
+  el.addEventListener('mousedown', (e) => {
+    if (!styleSettings.canvaModeActive) return;
+    if (e.target.classList.contains('resize-handle') || e.target.classList.contains('canva-delete-btn') || e.target.getAttribute('contenteditable') === 'true') return;
+    
+    e.preventDefault();
+    isDraggingElement = true;
+    activeDragElement = el;
+    
+    startX = e.clientX;
+    startY = e.clientY;
+    
+    const style = window.getComputedStyle(el);
+    startLeft = parseInt(style.left) || el.offsetLeft || 0;
+    startTop = parseInt(style.top) || el.offsetTop || 0;
+    
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+
+  function onMouseMove(e) {
+    if (!isDraggingElement || activeDragElement !== el) return;
+    
+    const deltaX = e.clientX - startX;
+    const deltaY = e.clientY - startY;
+    
+    const newLeft = startLeft + deltaX;
+    const newTop = startTop + deltaY;
+    
+    el.style.left = newLeft + 'px';
+    el.style.top = newTop + 'px';
+    
+    if (!styleSettings.canvaLayout) styleSettings.canvaLayout = {};
+    styleSettings.canvaLayout[idKey] = {
+      left: newLeft,
+      top: newTop,
+      width: el.offsetWidth,
+      height: el.offsetHeight
+    };
+  }
+
+  function onMouseUp() {
+    isDraggingElement = false;
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    saveStateToLocalStorage();
+  }
+
+  const handles = ['se', 'sw', 'ne', 'nw'];
+  handles.forEach(h => {
+    const handle = document.createElement('div');
+    handle.className = `resize-handle resize-handle-${h}`;
+    el.appendChild(handle);
+    
+    handle.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      let initialWidth = el.offsetWidth;
+      let initialHeight = el.offsetHeight;
+      let initialX = e.clientX;
+      let initialY = e.clientY;
+      let initialLeft = parseInt(window.getComputedStyle(el).left) || el.offsetLeft || 0;
+      let initialTop = parseInt(window.getComputedStyle(el).top) || el.offsetTop || 0;
+      
+      function resizeMove(moveEvent) {
+        let diffX = moveEvent.clientX - initialX;
+        let diffY = moveEvent.clientY - initialY;
+        
+        let newWidth = initialWidth;
+        let newHeight = initialHeight;
+        
+        if (h.includes('e')) newWidth = initialWidth + diffX;
+        if (h.includes('w')) {
+          newWidth = initialWidth - diffX;
+          el.style.left = (initialLeft + diffX) + 'px';
+        }
+        if (h.includes('s')) newHeight = initialHeight + diffY;
+        if (h.includes('n')) {
+          newHeight = initialHeight - diffY;
+          el.style.top = (initialTop + diffY) + 'px';
+        }
+        
+        el.style.width = Math.max(50, newWidth) + 'px';
+        el.style.height = Math.max(10, newHeight) + 'px';
+        
+        if (!styleSettings.canvaLayout) styleSettings.canvaLayout = {};
+        styleSettings.canvaLayout[idKey] = {
+          left: parseInt(el.style.left) || initialLeft,
+          top: parseInt(el.style.top) || initialTop,
+          width: el.offsetWidth,
+          height: el.offsetHeight
+        };
+      }
+      
+      function resizeEnd() {
+        document.removeEventListener('mousemove', resizeMove);
+        document.removeEventListener('mouseup', resizeEnd);
+        saveStateToLocalStorage();
+      }
+      
+      document.addEventListener('mousemove', resizeMove);
+      document.addEventListener('mouseup', resizeEnd);
+    });
+  });
+}
+
 

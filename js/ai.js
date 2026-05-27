@@ -122,12 +122,14 @@ const AIEngine = {
       return this.simulateLocalAIImprovement(rawSummary, 'summary');
     }
 
-    const prompt = `You are an expert resume writer. Improve the following candidate professional summary to make it highly professional, punchy, and optimized for applicant tracking systems. Do not use generic words. Keep it strictly to 2 to 3 sentences maximum. Use action verbs and highlight results. Do not include any intro or outro, return ONLY the improved text.
+    const prompt = `You are an expert resume writer. Improve the following candidate professional summary to make it highly professional, punchy, and optimized for applicant tracking systems. 
+    
+    CRITICAL INSTRUCTION: You MUST retain all original information and keep the generated text at least as long as the original text. Do not compress or shorten the text. Elevate the vocabulary and use strong action verbs. Return ONLY the improved text.
     
     Original Summary: "${rawSummary}"`;
 
     if (AIConfig.provider === 'gemini') {
-      return this.callGeminiAPI(prompt, 150);
+      return this.callGeminiAPI(prompt, 800);
     } else if (AIConfig.provider === 'anthropic') {
       return this.callClaudeAPI(prompt);
     }
@@ -149,6 +151,8 @@ const AIEngine = {
     }
 
     const prompt = `You are an ATS resume optimization tool. Rewrite the following work responsibilities for a "${jobTitle || 'Professional'}" role.
+    
+    CRITICAL INSTRUCTION: You MUST retain all original information and keep the generated text at least as long as the original text. Do not compress or shorten the text.
     Make each bullet point start with a strong action verb, specify the technical skill used, and prompt or guess reasonable numeric impacts (e.g., increased efficiency by X%, saved Y hours, managed Z users) where appropriate to make it metric-driven.
     Output each bullet point on a new line starting with a bullet character (•). Do not include any intro, explanations, or outro. Return ONLY the enhanced bullet points.
     
@@ -156,7 +160,7 @@ const AIEngine = {
     ${rawBullets}`;
 
     if (AIConfig.provider === 'gemini') {
-      return this.callGeminiAPI(prompt, 300);
+      return this.callGeminiAPI(prompt, 1000);
     } else if (AIConfig.provider === 'anthropic') {
       return this.callClaudeAPI(prompt);
     }

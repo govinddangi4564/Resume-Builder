@@ -2023,9 +2023,25 @@ input:checked+.slider:before {
     border: none !important;
     width: 100% !important;
     max-width: 100% !important;
-    background-color: #ffffff !important;
     color: #000000 !important;
   }
+
+  .resume-paper:not(.canva-mode-active) {
+    background-color: #ffffff !important;
+  }
+
+  /* Hide Canva editing artifacts on print */
+  .canva-draggable {
+    border: none !important;
+    outline: none !important;
+    cursor: default !important;
+  }
+
+  .resize-handle,
+  .canva-delete-btn {
+    display: none !important;
+  }
+
 
   /* Page layout settings */
   @page {
@@ -2228,4 +2244,160 @@ input:checked+.slider:before {
 
 [data-theme="dark"] .canvas-formatting-toolbar .toolbar-divider {
   background: rgba(255, 255, 255, 0.15);
+}
+
+/* Canva Design Toolbar */
+.canva-design-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  position: absolute;
+  top: -6.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all var(--transition-normal);
+}
+
+[data-theme="dark"] .canva-design-toolbar {
+  background: rgba(20, 20, 35, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.canva-design-toolbar .canva-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.825rem;
+  font-weight: 700;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.canva-design-toolbar .canva-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--accent-color);
+}
+
+[data-theme="dark"] .canva-design-toolbar .canva-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.canva-design-toolbar #btn-toggle-canva.active {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+
+/* Canva Mode Canvas Styles */
+.resume-paper.canva-mode-active {
+  position: relative !important;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 0) !important;
+  background-size: 15px 15px !important;
+}
+
+[data-theme="dark"] .resume-paper.canva-mode-active {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0) !important;
+}
+
+/* Draggable & Resizable Elements in Canva Mode */
+.canva-draggable {
+  position: absolute !important;
+  cursor: move;
+  border: 1px dashed transparent;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+  user-select: none;
+}
+
+.canva-draggable:hover {
+  border-color: var(--accent-color);
+}
+
+.canva-draggable.canva-selected {
+  border: 1px solid var(--accent-color);
+}
+
+/* Resize Handles */
+.canva-draggable .resize-handle {
+  display: none;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-color);
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.canva-draggable.canva-selected .resize-handle {
+  display: block;
+}
+
+.canva-draggable .resize-handle-se {
+  right: -4px;
+  bottom: -4px;
+  cursor: se-resize;
+}
+
+.canva-draggable .resize-handle-sw {
+  left: -4px;
+  bottom: -4px;
+  cursor: sw-resize;
+}
+
+.canva-draggable .resize-handle-ne {
+  right: -4px;
+  top: -4px;
+  cursor: ne-resize;
+}
+
+.canva-draggable .resize-handle-nw {
+  left: -4px;
+  top: -4px;
+  cursor: nw-resize;
+}
+
+/* Inline delete button for custom elements */
+.canva-delete-btn {
+  display: none;
+  position: absolute;
+  top: -20px;
+  right: -4px;
+  background: var(--accent-danger);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+}
+
+.canva-draggable.canva-selected .canva-delete-btn {
+  display: flex;
+}
+
+/* Draggable divider lines styling */
+.canva-line-element {
+  min-height: 4px;
+  width: 150px;
 }

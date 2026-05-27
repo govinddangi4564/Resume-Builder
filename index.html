@@ -7,6 +7,8 @@
   <meta name="description"
     content="Build highly polished, ATS-optimized resumes for free with zero signups. Real-time split-screen builder, 6 professional templates, local auto-save, and optional AI enhancement.">
   <title>ResumeCraft AI - 100% Free ATS Resume Builder</title>
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -584,6 +586,20 @@
             <button class="format-btn" onclick="applyInlineFormat('justifyCenter')" title="Align Center">↔</button>
             <button class="format-btn" onclick="applyInlineFormat('justifyRight')" title="Align Right">→</button>
             <button class="format-btn" onclick="applyInlineFormat('justifyFull')" title="Justify">≡</button>
+          </div>
+          <!-- Canva design toolbar -->
+          <div class="canva-design-toolbar" id="canva-design-toolbar">
+            <button class="canva-btn" id="btn-toggle-canva" onclick="toggleCanvaMode()" title="Toggle Canva Absolute Drag/Resize Layout Mode">🎨 Canva Mode: Off</button>
+            <span class="toolbar-divider"></span>
+            <button class="canva-btn" onclick="addCanvaElement('text')" title="Add Draggable Text Block">+ Text</button>
+            <button class="canva-btn" onclick="addCanvaElement('line')" title="Add Draggable Divider Line">+ Line</button>
+            <span class="toolbar-divider"></span>
+            <label class="canva-bg-label" style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; color: var(--text-primary);">
+              <span>BG:</span>
+              <input type="color" id="canva-bg-picker" value="#ffffff" onchange="changeCanvaBackground()" style="width: 24px; height: 20px; border: none; padding: 0; cursor: pointer; background: transparent;">
+            </label>
+            <span class="toolbar-divider"></span>
+            <button class="canva-btn" onclick="resetCanvaPositions()" title="Reset All Drag/Resize Positions" style="color: var(--accent-danger);">Reset</button>
           </div>
           <div class="resume-paper" id="resume-canvas">
             <!-- Rendered dynamic content goes here -->
