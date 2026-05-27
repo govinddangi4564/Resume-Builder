@@ -2257,10 +2257,10 @@ input:checked+.slider:before {
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius-md);
   padding: 0.5rem 0.75rem;
-  position: absolute;
-  top: -6.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: sticky;
+  top: 1rem;
+  margin-bottom: -1rem; /* Adjust space before paper */
+  align-self: flex-start;
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all var(--transition-normal);

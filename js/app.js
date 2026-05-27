@@ -1425,8 +1425,8 @@ function setupCanvasInlineEditing() {
   });
 }
 
-function applyInlineFormat(command) {
-  document.execCommand(command, false, null);
+function applyInlineFormat(command, value = null) {
+  document.execCommand(command, false, value);
   const activeEl = document.activeElement;
   if (activeEl && activeEl.getAttribute('contenteditable') === 'true') {
     syncCanvasEditToState(activeEl);
@@ -1486,6 +1486,46 @@ function changeSelectedFontSize(direction) {
       const currentSizePx = parseFloat(currentSize);
       const newSize = Math.max(8, Math.min(48, currentSizePx + direction));
       editable.style.fontSize = newSize + 'px';
+      syncCanvasEditToState(editable);
+    }
+  }
+}
+
+function setSelectedFontSize(size) {
+  const selection = window.getSelection();
+  if (selection.rangeCount > 0 && !selection.isCollapsed) {
+    const range = selection.getRangeAt(0);
+    
+    // Create span for size formatting
+    const span = document.createElement('span');
+    span.style.fontSize = size + 'px';
+    
+    try {
+      // Wrap selection in styled span
+      span.appendChild(range.extractContents());
+      range.insertNode(span);
+      
+      // Select the newly formatted node
+      selection.removeAllRanges();
+      const newRange = document.createRange();
+      newRange.selectNodeContents(span);
+      selection.addRange(newRange);
+    } catch (e) {
+      document.execCommand('fontSize', false, '3');
+    }
+    
+    const editable = span.closest('[contenteditable="true"]');
+    if (editable) {
+      syncCanvasEditToState(editable);
+    }
+  } else if (selection.rangeCount > 0) {
+    let container = selection.getRangeAt(0).startContainer;
+    if (container.nodeType === 3) {
+      container = container.parentNode;
+    }
+    const editable = container.closest('[contenteditable="true"]');
+    if (editable) {
+      editable.style.fontSize = size + 'px';
       syncCanvasEditToState(editable);
     }
   }
@@ -1644,16 +1684,12 @@ function changeCanvaBackground() {
   saveStateToLocalStorage();
   
   const canvas = document.getElementById('resume-canvas');
-  if (canvas && styleSettings.canvaModeActive) {
+  if (canvas) {
     canvas.style.backgroundColor = color;
   }
 }
 
 function addCanvaElement(type) {
-  if (!styleSettings.canvaModeActive) {
-    showToast('Canva Mode Required', 'Turn on Canva Mode first to add custom draggable items.', 'warning');
-    return;
-  }
   
   const id = `canva-el-${Date.now()}`;
   const newItem = {
@@ -1699,67 +1735,12 @@ function applyCanvaLayoutSettings() {
 
   const paper = canvas;
   
-  if (styleSettings.canvaModeActive) {
-    paper.classList.add('canva-mode-active');
-    paper.style.backgroundColor = styleSettings.canvaBgColor || '#ffffff';
-    
-    // Find all primary structural sections to position them
-    const blocks = Array.from(paper.querySelectorAll('header, .ro-section, aside, main, .ro-main-col, .ro-sidebar'));
-    
-    // Switch to absolute positioning
-    blocks.forEach((el, index) => {
-      const key = `block-${el.tagName.toLowerCase()}-${index}`;
-      
-      // If we already have saved coordinates, apply them
-      if (styleSettings.canvaLayout && styleSettings.canvaLayout[key]) {
-        const coords = styleSettings.canvaLayout[key];
-        el.style.position = 'absolute';
-        el.style.left = coords.left + 'px';
-        el.style.top = coords.top + 'px';
-        el.style.width = coords.width + 'px';
-        if (coords.height) el.style.height = coords.height + 'px';
-      } else {
-        // Capture current flow positions before absolute shift
-        const rect = el.getBoundingClientRect();
-        const paperRect = paper.getBoundingClientRect();
-        
-        const relativeLeft = rect.left - paperRect.left;
-        const relativeTop = rect.top - paperRect.top;
-        
-        el.style.position = 'absolute';
-        el.style.left = relativeLeft + 'px';
-        el.style.top = relativeTop + 'px';
-        el.style.width = el.offsetWidth + 'px';
-        
-        if (!styleSettings.canvaLayout) styleSettings.canvaLayout = {};
-        styleSettings.canvaLayout[key] = {
-          left: relativeLeft,
-          top: relativeTop,
-          width: el.offsetWidth,
-          height: el.offsetHeight
-        };
-      }
-      
-      makeElementDraggable(el, key);
-    });
-
-    // Render custom elements
-    renderCanvaCustomElements();
-  } else {
-    paper.classList.remove('canva-mode-active');
-    paper.style.backgroundColor = '';
-    
-    const blocks = Array.from(paper.querySelectorAll('header, .ro-section, aside, main, .ro-main-col, .ro-sidebar'));
-    blocks.forEach(el => {
-      el.style.position = '';
-      el.style.left = '';
-      el.style.top = '';
-      el.style.width = '';
-      el.style.height = '';
-      el.classList.remove('canva-draggable', 'canva-selected');
-      el.querySelectorAll('.resize-handle, .canva-delete-btn').forEach(h => h.remove());
-    });
-  }
+  // Canva features are now ALWAYS ON, mixed with the normal layout flow
+  paper.classList.add('canva-mode-active');
+  paper.style.backgroundColor = styleSettings.canvaBgColor || '#ffffff';
+  
+  // Render custom draggable elements (+ Text, + Line) over the normal document flow
+  renderCanvaCustomElements();
 }
 
 function renderCanvaCustomElements() {

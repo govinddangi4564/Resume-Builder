@@ -547,6 +547,51 @@
           <div class="control-group reorder-btn-group">
             <button class="btn btn-outline btn-xs" onclick="openReorderModal()">⇅ Reorder Sections</button>
           </div>
+
+          <!-- Text Formatting Tools -->
+          <div class="control-group" style="border-left: 1px solid var(--border-color); padding-left: 1rem; flex-direction: row; align-items: center; gap: 0.25rem;">
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('bold')" title="Bold" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><b>B</b></button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('italic')" title="Italic" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><i>I</i></button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('underline')" title="Underline" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><u>U</u></button>
+            
+            <select class="btn btn-outline btn-xs" onchange="setSelectedFontSize(this.value)" title="Font Size" style="padding: 0.2rem; min-width: auto; height: 26px; margin-left: 0.2rem;">
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12" selected>12</option>
+              <option value="14">14</option>
+              <option value="16">16</option>
+              <option value="18">18</option>
+              <option value="20">20</option>
+              <option value="22">22</option>
+              <option value="24">24</option>
+              <option value="26">26</option>
+              <option value="28">28</option>
+              <option value="36">36</option>
+              <option value="48">48</option>
+              <option value="72">72</option>
+            </select>
+            
+            <label class="btn btn-outline btn-xs" title="Text Color" style="display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0.2rem; min-width: auto; height: 26px; margin-left: 0.2rem;">
+              <input type="color" onchange="applyInlineFormat('foreColor', this.value)" style="width: 14px; height: 14px; padding: 0; border: none; cursor: pointer; background: transparent;">
+            </label>
+            
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyLeft')" title="Align Left" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px; margin-left: 0.2rem;">←</button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyCenter')" title="Align Center" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;">↔</button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyRight')" title="Align Right" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;">→</button>
+          </div>
+
+          <!-- Canva Layout Tools -->
+          <div class="control-group" style="border-left: 1px solid var(--border-color); padding-left: 1rem; flex-direction: row; align-items: center; gap: 0.25rem;">
+            <button class="btn btn-outline btn-xs" onclick="addCanvaElement('text')" title="Add Text" style="height: 26px;">+ Text</button>
+            <button class="btn btn-outline btn-xs" onclick="addCanvaElement('line')" title="Add Line" style="height: 26px;">+ Line</button>
+            <label class="btn btn-outline btn-xs" title="Canvas Background Color" style="display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0.2rem; height: 26px; margin-left: 0.2rem;">
+              <span style="margin-right: 2px;">BG:</span>
+              <input type="color" id="canva-bg-picker" value="#ffffff" onchange="changeCanvaBackground()" style="width: 14px; height: 14px; padding: 0; border: none; cursor: pointer; background: transparent;">
+            </label>
+            <button class="btn btn-outline btn-xs" onclick="resetCanvaPositions()" title="Reset All Drag/Resize Positions" style="height: 26px; color: var(--accent-danger); border-color: rgba(220, 38, 38, 0.2); margin-left: 0.2rem;">Reset Layout</button>
+          </div>
         </div>
 
         <!-- Live Audit Scorer Bar -->
@@ -563,44 +608,15 @@
           <button class="btn btn-ghost btn-xs" id="audit-toggle-arrow"
             style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">▼ See Checklist</button>
         </div>
-
-        <!-- Collapsible Audit Panel -->
+<!-- Collapsible Audit Panel -->
         <div class="audit-panel-collapsible" id="live-audit-checklist-drawer">
-          <div class="audit-checklist-content" id="live-audit-checklist-items">
+              <div class="audit-checklist-content" id="live-audit-checklist-items">
             <!-- Checklist items will load dynamically -->
           </div>
         </div>
 
         <!-- Resume Page Frame -->
         <div class="resume-preview-frame" style="position: relative;">
-          <!-- Canva-like formatting toolbar -->
-          <div class="canvas-formatting-toolbar" id="inline-formatting-toolbar">
-            <button class="format-btn" onclick="applyInlineFormat('bold')" title="Bold"><b>B</b></button>
-            <button class="format-btn" onclick="applyInlineFormat('italic')" title="Italic"><i>I</i></button>
-            <button class="format-btn" onclick="applyInlineFormat('underline')" title="Underline"><u>U</u></button>
-            <span class="toolbar-divider"></span>
-            <button class="format-btn" onclick="changeSelectedFontSize(1)" title="Increase Size">A+</button>
-            <button class="format-btn" onclick="changeSelectedFontSize(-1)" title="Decrease Size">A-</button>
-            <span class="toolbar-divider"></span>
-            <button class="format-btn" onclick="applyInlineFormat('justifyLeft')" title="Align Left">←</button>
-            <button class="format-btn" onclick="applyInlineFormat('justifyCenter')" title="Align Center">↔</button>
-            <button class="format-btn" onclick="applyInlineFormat('justifyRight')" title="Align Right">→</button>
-            <button class="format-btn" onclick="applyInlineFormat('justifyFull')" title="Justify">≡</button>
-          </div>
-          <!-- Canva design toolbar -->
-          <div class="canva-design-toolbar" id="canva-design-toolbar">
-            <button class="canva-btn" id="btn-toggle-canva" onclick="toggleCanvaMode()" title="Toggle Canva Absolute Drag/Resize Layout Mode">🎨 Canva Mode: Off</button>
-            <span class="toolbar-divider"></span>
-            <button class="canva-btn" onclick="addCanvaElement('text')" title="Add Draggable Text Block">+ Text</button>
-            <button class="canva-btn" onclick="addCanvaElement('line')" title="Add Draggable Divider Line">+ Line</button>
-            <span class="toolbar-divider"></span>
-            <label class="canva-bg-label" style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; color: var(--text-primary);">
-              <span>BG:</span>
-              <input type="color" id="canva-bg-picker" value="#ffffff" onchange="changeCanvaBackground()" style="width: 24px; height: 20px; border: none; padding: 0; cursor: pointer; background: transparent;">
-            </label>
-            <span class="toolbar-divider"></span>
-            <button class="canva-btn" onclick="resetCanvaPositions()" title="Reset All Drag/Resize Positions" style="color: var(--accent-danger);">Reset</button>
-          </div>
           <div class="resume-paper" id="resume-canvas">
             <!-- Rendered dynamic content goes here -->
           </div>
