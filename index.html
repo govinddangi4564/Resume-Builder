@@ -8,7 +8,8 @@
     content="Build highly polished, ATS-optimized resumes for free with zero signups. Real-time split-screen builder, 6 professional templates, local auto-save, and optional AI enhancement.">
   <title>ResumeCraft AI - 100% Free ATS Resume Builder</title>
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,9 +49,11 @@
           <span class="badge-pulse"></span>
           100% Free • No Registration Required • ATS-Friendly
         </div>
-        <h1>Land Your Dream Job with an <span class="gradient-text">ATS-Optimized</span> Resume</h1>
-        <p class="hero-lead">Craft professional, parser-proof resumes in real-time. Choose a premium template, let AI
-          refine your content, and download instantly without leaving your browser.</p>
+        <h1>Your Next Job Starts with a <span class="gradient-text">Powerful Resume</span></h1>
+        <p class="hero-lead">
+          Build sleek, ATS-optimized resumes effortlessly using smart AI tools, premium layouts, and instant PDF
+          downloads.
+        </p>
 
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" onclick="startBuilder(null)">
@@ -535,7 +538,8 @@
             </select>
           </div>
 
-          <div class="control-group check-group-inline" style="display: flex; gap: 0.75rem; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">
+          <div class="control-group check-group-inline"
+            style="display: flex; gap: 0.75rem; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">
             <label style="display: flex; align-items: center; gap: 0.25rem; cursor: pointer;">
               <input type="checkbox" id="style-check-bold" onchange="onStyleSettingsChanged()" checked> Bold Header
             </label>
@@ -549,12 +553,17 @@
           </div>
 
           <!-- Text Formatting Tools -->
-          <div class="control-group" style="border-left: 1px solid var(--border-color); padding-left: 1rem; flex-direction: row; align-items: center; gap: 0.25rem;">
-            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('bold')" title="Bold" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><b>B</b></button>
-            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('italic')" title="Italic" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><i>I</i></button>
-            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('underline')" title="Underline" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><u>U</u></button>
-            
-            <select class="btn btn-outline btn-xs" onchange="setSelectedFontSize(this.value)" title="Font Size" style="padding: 0.2rem; min-width: auto; height: 26px; margin-left: 0.2rem;">
+          <div class="control-group"
+            style="border-left: 1px solid var(--border-color); padding-left: 1rem; flex-direction: row; align-items: center; gap: 0.25rem;">
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('bold')" title="Bold"
+              style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><b>B</b></button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('italic')" title="Italic"
+              style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><i>I</i></button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('underline')" title="Underline"
+              style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;"><u>U</u></button>
+
+            <select class="btn btn-outline btn-xs" onchange="setSelectedFontSize(this.value)" title="Font Size"
+              style="padding: 0.2rem; min-width: auto; height: 26px; margin-left: 0.2rem;">
               <option value="8">8</option>
               <option value="9">9</option>
               <option value="10">10</option>
@@ -572,25 +581,38 @@
               <option value="48">48</option>
               <option value="72">72</option>
             </select>
-            
-            <label class="btn btn-outline btn-xs" title="Text Color" style="display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0.2rem; min-width: auto; height: 26px; margin-left: 0.2rem;">
-              <input type="color" onchange="applyInlineFormat('foreColor', this.value)" style="width: 14px; height: 14px; padding: 0; border: none; cursor: pointer; background: transparent;">
+
+            <label class="btn btn-outline btn-xs" title="Text Color"
+              style="display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0.2rem; min-width: auto; height: 26px; margin-left: 0.2rem;">
+              <input type="color" onchange="applyInlineFormat('foreColor', this.value)"
+                style="width: 14px; height: 14px; padding: 0; border: none; cursor: pointer; background: transparent;">
             </label>
-            
-            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyLeft')" title="Align Left" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px; margin-left: 0.2rem;">←</button>
-            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyCenter')" title="Align Center" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;">↔</button>
-            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyRight')" title="Align Right" style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;">→</button>
+
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyLeft')" title="Align Left"
+              style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px; margin-left: 0.2rem;">←</button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyCenter')" title="Align Center"
+              style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;">↔</button>
+            <button class="btn btn-outline btn-xs" onclick="applyInlineFormat('justifyRight')" title="Align Right"
+              style="padding: 0.2rem 0.4rem; min-width: auto; height: 26px;">→</button>
           </div>
 
           <!-- Canva Layout Tools -->
-          <div class="control-group" style="border-left: 1px solid var(--border-color); padding-left: 1rem; flex-direction: row; align-items: center; gap: 0.25rem;">
-            <button class="btn btn-outline btn-xs" onclick="addCanvaElement('text')" title="Add Text" style="height: 26px;">+ Text</button>
-            <button class="btn btn-outline btn-xs" onclick="addCanvaElement('line')" title="Add Line" style="height: 26px;">+ Line</button>
-            <label class="btn btn-outline btn-xs" title="Canvas Background Color" style="display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0.2rem; height: 26px; margin-left: 0.2rem;">
+          <div class="control-group"
+            style="border-left: 1px solid var(--border-color); padding-left: 1rem; flex-direction: row; align-items: center; gap: 0.25rem;">
+            <button class="btn btn-outline btn-xs" onclick="addCanvaElement('text')" title="Add Text"
+              style="height: 26px;">+ Text</button>
+            <button class="btn btn-outline btn-xs" onclick="addCanvaElement('line')" title="Add Line"
+              style="height: 26px;">+ Line</button>
+            <label class="btn btn-outline btn-xs" title="Canvas Background Color"
+              style="display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0.2rem; height: 26px; margin-left: 0.2rem;">
               <span style="margin-right: 2px;">BG:</span>
-              <input type="color" id="canva-bg-picker" value="#ffffff" onchange="changeCanvaBackground()" style="width: 14px; height: 14px; padding: 0; border: none; cursor: pointer; background: transparent;">
+              <input type="color" id="canva-bg-picker" value="#ffffff" onchange="changeCanvaBackground()"
+                style="width: 14px; height: 14px; padding: 0; border: none; cursor: pointer; background: transparent;">
             </label>
-            <button class="btn btn-outline btn-xs" onclick="resetCanvaPositions()" title="Reset All Drag/Resize Positions" style="height: 26px; color: var(--accent-danger); border-color: rgba(220, 38, 38, 0.2); margin-left: 0.2rem;">Reset Layout</button>
+            <button class="btn btn-outline btn-xs" onclick="resetCanvaPositions()"
+              title="Reset All Drag/Resize Positions"
+              style="height: 26px; color: var(--accent-danger); border-color: rgba(220, 38, 38, 0.2); margin-left: 0.2rem;">Reset
+              Layout</button>
           </div>
         </div>
 
@@ -608,9 +630,9 @@
           <button class="btn btn-ghost btn-xs" id="audit-toggle-arrow"
             style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">▼ See Checklist</button>
         </div>
-<!-- Collapsible Audit Panel -->
+        <!-- Collapsible Audit Panel -->
         <div class="audit-panel-collapsible" id="live-audit-checklist-drawer">
-              <div class="audit-checklist-content" id="live-audit-checklist-items">
+          <div class="audit-checklist-content" id="live-audit-checklist-items">
             <!-- Checklist items will load dynamically -->
           </div>
         </div>
@@ -781,6 +803,16 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation -->
+  <div id="mobile-bottom-tabs" class="mobile-tabs-container">
+    <button class="mobile-tab-btn active" onclick="switchMobileView('form')">
+      <span>✍️</span> Edit Details
+    </button>
+    <button class="mobile-tab-btn" onclick="switchMobileView('preview')">
+      <span>👀</span> Preview & Design
+    </button>
   </div>
 
   <!-- Local Assistant Suggestions Toast/Alert Container -->

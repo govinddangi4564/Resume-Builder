@@ -125,6 +125,8 @@ let certCounter = 0;
 
 // On Page Load
 document.addEventListener('DOMContentLoaded', async () => {
+  document.body.dataset.view = 'landing';
+
   // Load saved theme first
   const savedTheme = localStorage.getItem('rc_theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
@@ -346,6 +348,8 @@ function showView(viewName) {
   const builder = document.getElementById('builder-app');
   const checker = document.getElementById('ats-checker-view');
 
+  document.body.dataset.view = viewName;
+
   landing.classList.replace('view-active', 'view-hidden');
   builder.classList.replace('view-active', 'view-hidden');
   checker.classList.replace('view-active', 'view-hidden');
@@ -356,6 +360,9 @@ function showView(viewName) {
     builder.classList.replace('view-hidden', 'view-active');
     renderResumeCanvas();
     updateLiveATSScore();
+    if (window.innerWidth <= 1100) {
+      switchMobileView('form');
+    }
   } else if (viewName === 'checker') {
     checker.classList.replace('view-hidden', 'view-active');
   }
@@ -1903,4 +1910,67 @@ function makeElementDraggable(el, idKey) {
   });
 }
 
+/* ==========================================
+   MOBILE RESPONSIVENESS
+   ========================================== */
+function switchMobileView(view) {
+  const formEditor = document.querySelector('.form-editor');
+  const previewSection = document.querySelector('.live-preview-section');
+  const tabs = document.querySelectorAll('.mobile-tab-btn');
+  
+  if (!formEditor || !previewSection) return;
+  
+  if (view === 'form') {
+    formEditor.style.display = 'flex';
+    previewSection.style.display = 'none';
+    if(tabs.length > 1) {
+      tabs[0].classList.add('active');
+      tabs[1].classList.remove('active');
+    }
+  } else if (view === 'preview') {
+    formEditor.style.display = 'none';
+    previewSection.style.display = 'flex';
+    if(tabs.length > 1) {
+      tabs[0].classList.remove('active');
+      tabs[1].classList.add('active');
+    }
+    
+    // Scale preview on show if needed
+    scaleCanvasForMobile();
+  }
+}
 
+// Ensure proper scaling on resize or load
+function scaleCanvasForMobile() {
+  if (window.innerWidth <= 1100) {
+    const previewFrame = document.querySelector('.resume-preview-frame');
+    const paper = document.getElementById('resume-canvas');
+    if (previewFrame && paper) {
+      const frameWidth = previewFrame.clientWidth;
+      const paperWidth = 820;
+      
+      // Calculate scale to fit with 20px padding
+      let scale = (frameWidth - 40) / paperWidth;
+      if (scale > 1) scale = 1;
+      
+      paper.style.transform = `scale(${scale})`;
+      paper.style.transformOrigin = 'top center';
+      paper.style.marginBottom = `${paper.offsetHeight * (scale - 1)}px`;
+    }
+  } else {
+    const paper = document.getElementById('resume-canvas');
+    if (paper) {
+      paper.style.transform = 'none';
+      paper.style.marginBottom = '';
+    }
+  }
+}
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1100) {
+    // Reset displays when moving back to desktop
+    document.querySelector('.form-editor').style.display = '';
+    document.querySelector('.live-preview-section').style.display = '';
+  }
+  scaleCanvasForMobile();
+});
